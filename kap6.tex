@@ -1,0 +1,20 @@
+\section{Statistische Grundideen}
+\renewcommand{\theta}{\vartheta}
+Man unterscheidet im Grunde zwei Formen der Statistik:
+\begin{itemize}
+\item Die \textit{deskriptive Statistik} beschäftigt sich hauptsächlich mit graphischer Aufbereitung der Daten etc.
+\item Die \textit{induktive Statistik} sucht für eine gesammelte Menge an Daten ein passendes (Verteilungs-)Modell
+\end{itemize}
+Wir unterscheiden \textit{Daten} $x_1,\dots,x_n$ (generell Zahlen) und den generierenden Mechanismus $X_1,\dots,X_n$ (Zufallsvariablen, also Funktionen auf $\Omega$). Die Gesamtheit der Beobachtungen $x_1,\dots,x_n$ oder Zufallsvariablen $X_1,\dots,X_n$ nennt man oft \textit{Stichprobe} mit \textit{Stichprobenumfang} $n$.\\
+
+Ausgangspunkt ist oft ein Datensatz $x_1,\dots,x_n$ aus einer Stichprobe $X_1,\dots,X_n$, für die wir ein Modell suchen. $\implies$ durch Parameter $\theta \in \Theta$ (möglicherweise hoch-dimensional). Dazu betrachtet man einge ganze Familie von Wahrscheinlichkeitsräumen. Der Grundraum $(\Omega, \mathcal{F})$ ist fest und für jeden Parameter $\theta$ aus dem Parameterraum $\Theta$ hat man ein Wahrscheinlichkeitsmass $P_\theta$ auf dem Grundraum. Dies gibt uns also einen Wahrscheinlichkeitsraum $(\Omega, \mathcal{F}, P_\theta)$ für jedes $\theta\in\Theta$. Wir betrachten dann die Daten $x_1,\dots,x_n$ als Ergebnisse von Zufallsvariablen $X_1,\dots,X_n$ und versuchen daraus Rückschlüsse über $\theta$ zu ziehen.\\
+
+Das Vorgehen erfolgt in 5 Schritten:
+\begin{enumerate}
+\item Deskriptive Statistik um sich einen Überblick zu verschaffen
+\item Wahl eines (parametrischen) Modells $\to$ spezifiziere eine Parametermenge $\Theta$ und die Familie $(P_\theta)_{\theta \in \Theta}$
+\item Schätzung der Parameter aufgrund der Daten mithilfe eines \textit{Schätzers}
+\item Kritische Modellüberprüfung und Anpassung $\to$ überprüft ob Daten gut zu gewähltem Paramter $\theta$ passen mittels geeignetem statistischen Test
+\item Aussagen über die Zuverlässigkeit $\to$ wie gut passt das Modell? kann auch \textit{Konfidenzbereich} anstelle eines einzelnen Parameters angeben.
+\end{enumerate}
+Dieses Vorgehen nennt man \textit{parametrische statistische Analyse}.

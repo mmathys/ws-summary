@@ -1,0 +1,24 @@
+\section{Einfache Lineare Regression}
+Wir betrachten lediglich zwei Zufallsvariablen $X,Y$, zwischen denen wir einen linaren Zusammenhang vermuten. Dies schreiben wir durch ein Modell der Form
+$$ Y = \beta_0 + \beta_1 X + \varepsilon$$
+für konstante $\beta_0,\beta_1$ und eine von $X$ unabhängige Zufallsvariable $\varepsilon$ mit $\E[\varepsilon] = 0$ und endlicher Varianz.\\
+
+Seien $(x_i, y_i)$ für $i \in \{1,\dots,n\}$ unabhängige Realisierungen von $(X,Y)$, also von uns beobachtete Daten. Wir suchen die Paramter $\beta_0,\beta_1$ mittels der Methode der kleinsten Quadrate, d.h. wir minimieren
+$$ f(\beta_0, \beta_1) := \sum_{i=1}^n (\beta_0 + \beta_1 x_i - y_i)^2$$
+in dem wir nach $\beta_0$ und $\beta_1$ ableiten, und den Gradient $\nabla f=0$ setzen. Zuerst definieren wir aber 
+$$ \overline{x}:= \frac{1}{n}\sum_{i=1}^n x_i, \quad \quad \overline{y}:= \frac{1}{n}\sum_{i=1}^n y_i, \quad \quad \overline{x^2}:= \frac{1}{n}\sum_{i=1}^n x_i^2, \quad \quad \overline{xy}:= \frac{1}{n}\sum_{i=1}^n x_i y_i$$
+Nun finden wir den Gradienten von $f$ und setzen ihn $=0$: 
+$$ \nabla f(\beta_0, \beta_1) = \begin{pmatrix}
+2 \sum_{i=1}^n (\beta_0 + \beta_1 x_i - y_i) \\ 
+2 \sum_{i=1}^n x_i ( \beta_0 + \beta_1 x_i - y_i)
+\end{pmatrix} \overset{!}{=} 0 \implies \beta_0 + \beta_1 \overline{x} = \overline{y} \quad \land \quad \beta_0 \overline{x}  + \beta_1 \overline{x^2} = \overline{xy}$$
+Dieses Gleichungssystem kann man nun auflösen und erhält:
+\begin{mdframed}[backgroundcolor=red!20]
+$$ \beta_1 = \frac{\mathrm{cov}(x,y)}{\mathrm{var}(x)} \quad \quad \quad \quad \quad  \beta_0 = \overline{y} - \frac{\mathrm{cov}(x,y)}{\mathrm{var}(x)}\overline{x} $$
+\end{mdframed}
+wobei $\mathrm{var}(x)$ und $\mathrm{cov}(x,y)$ die \textit{Stichprobenvarianz} bzw. \textit{Strichprobenkovarianz} bezeichnet. Beachte, dass diese Schätzungen nicht erwartungstreu sind, und man deshalb oft die korrigierten Varianten benutzt:
+\begin{eqnarray*}
+\mathrm{var}(x) := \frac{1}{n}\sum_{i=1}^n (x_i - \overline{x})^2 & \mbox{ vs. } & \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2 \\
+\mathrm{cov}(x,y) := \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y}) & \mbox{ vs. } & \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})
+\end{eqnarray*}
+Für grosse $n$ wird dieser Unterschied jedoch zunehmened geringer und es spielt dann keine Rolle mehr, welche Formel verwendet wird.

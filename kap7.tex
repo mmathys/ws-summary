@@ -1,0 +1,124 @@
+\section{Schätzer}
+\renewcommand{\theta}{\vartheta}
+Wir suchen ein Modell für eine Stichprobe $X_1,\dots, X_n$ und haben einen Parameterraum $\Theta$ (oft $\subseteq \R^m$) und für jedes $\theta \in \Theta$ einen Wahrscheinlichkeitsraum $(\Omega, \mathcal{F}, P_\theta)$. Wir wollen daher die Paramter $\theta_1,\dots,\theta_m$ bestimmen.
+\begin{definition}[\textbf{Schätzer}]
+Ein \textit{Schätzer} $T_j$ für einen Parameter $\theta_j$ ist eine Zufallsvariable der Form $T_j := t_j(X_1,\dots,X_n)$ für eine \textit{Schätzfunktion} $t_j: \R^n \to \R$.
+\end{definition}
+\begin{definition}[\textbf{Schätzwert}]
+Ein Schätzwert ist das Ergenis einer konkreten Berechnung, eine Zahl. Sie entsteht durch Einsetzen konkreter Daten in einen Schätzer: $T_j(\omega) = t_j(x_1,\dots,x_n)$ und liefert damit einen Wert für genau einen Parameter $\theta_j$.
+\end{definition}
+Damit ist ein Schätzer also eine Funktion, die eine Berechnungs\textit{methode} angibt und ein Schätzwert ist ein Ergebnis einer solchen \textit{konkreten Berechnung}. Der Einfachheit halber schreiben wir oft $T = (T_1,\dots,T_m)$ und $\theta = (\theta_1,\dots,\theta_m)$. Wir betrachten nun einige wünschenswerte Eigenschaften für Schätzer:
+
+\begin{definition}[\textbf{Eigenschaften von Schätzern}]
+Sei $T$ ein Schätzer.
+\begin{itemize}
+\item $T$ ist \textbf{erwartungstreu}, falls $\E_\theta [T] = \theta$ gilt. $T$ schätzt im Mittel also richtig
+\item der \textbf{Bias} ist definiert als $\E_\theta [T] - \theta$
+$\implies$ ein erwartungstreuer Schätzer hat keinen Bias.
+\item der \textbf{mean-squared-error (MSE)} ist definiert als $\mathrm{MSE}_\theta [T] := \E_\theta [(T-\theta)^2] = \mathrm{Var}_\theta[T] + (\E_\theta[T] - \theta)^2$\\
+$\implies$ für erwartungstreue Schätzer ist MSE = Varianz
+\item eine Folge $T^{(n)}$ von Schätzern heisst \textbf{konsistent} für $\theta$, falls $T^{(n)}$ für $n\to\infty$ in $P_\theta$-Wahrscheinlichkeit gegen $\theta$ konvergiert, d.h. für jedes $\theta \in \Theta$ gilt:
+$$ lim_{n\to\infty} P_\theta \left[ |T^{(n)} - \theta | > \varepsilon\right] = 0 \quad \quad \forall \varepsilon >0$$
+\end{itemize}
+\end{definition}
+
+\subsection{Maximum-Likelihood Methode}
+Man unterscheidet den diskreten und stetigen Fall. Wir betrachten hier nur den stetigen Fall, der diskrete Fall verläuft analog (man verwendet Gewichtsfunktion statt Dichtefunktion).\\
+
+In einem Modell $P_\theta$ sind dann die Zufallsvariablen $X_1,\dots,X_n$ stetig mit einer gemeinsamen Dichtefunktion $f(x_1,\dots,x_n; \theta)$. Oft sind die $X_i$ sogar i.i.d. mit individueller Dichtefunktion $f_X(x;\theta)$ und man erhält die gemeinsame Dichtefunktion als Produkt (dies wird später nützlich):
+$$ f(x_1,\dots,x_n; \theta) = P_\theta[X_1 = x_1, \dots, X_n = x_n] = \prod_{i=1}^n f_X(x_i;\theta)$$
+Beachte, dass die erste Gleichheit auch im allgemeinen Fall gilt, während die zweite Gleichheit nur für i.i.d. ZV gilt.
+\begin{definition}[\textbf{Likelihood-Funktion}]
+Die \textit{Likelihood}-Funktion $L$ ist definiert durch 
+$$  L(x_1,\dots,x_n;\theta) := \begin{cases} p(x_1,\dots,x_n; \theta) & \mbox{diskreter Fall} \\ f(x_1,\dots,x_n;\theta) & \mbox{stetiger Fall} \end{cases} $$
+Die Funktion $\log L(x_1,\dots,x_n;\theta)$ ist dann die \textit{log-Likelihood-Funktion} (natürlicher Logarithmus)
+\end{definition}
+
+Für eine Stichprobe $X_1,\dots,X_n$ gibt die Likelihood-Funktion die Wahrscheinlichkeit, dass im Modell $P_\theta$ unsere Stichprobe gerade die Werte $x_1,\dots,x_n$, die wir beobachtet haben, liefert. Die Idee der \textit{Maximum-Likelihood} Funktion besteht nun darin, dass wir die beobachteten Werte $x_1,\dots,x_n$ als sehr wahrscheinlich betrachten. Konkret ``definieren" wir diese Ergebnis als das wahrscheinlichste Ergebnis, das auftauchen kann. Aus diesem Grund maximieren wir die Likelihood-Funktion nach dem Parameter $\theta$:
+\begin{definition}[\textbf{Maximum-Likelihood-Schätzer}]
+Der \textit{ML-Schätzer} $T$ für $\theta$ ist dadurch definiert, dass er die Funktion $\theta \mapsto L(X_1, \dots, X_n; \theta)$ als Funktion von $\theta$ maximiert.
+\end{definition}
+\underline{Bemerkung:} Normalerweise arbeiten wir mit i.i.d. Zufallsvariablen $X_i \implies $ die Likelihood-Funktion $L$ ist ein Produkt. Verwenden wir aber $ \log L$, so können wir die log-Likelihood-Funktion als Summe schreiben, was das Differenzieren erleichtert. Dies funktioniert, da $\log: (0,\infty) \to \R$ streng monoton wachsend ist. Das bedeutet konkret, dass jedes Maximum/Minimum von $L$ auch eines von $\log L$ ist.\\
+
+Im Allgemeinen versucht man, dises Maximum analytisch zu finden, z.B. durch Differenzieren. Es kann aber auch vorkommen, dass die Likelihood-Funktion nicht differenzierbar ist. In diesem Fall muss man iterativ vorgehen, z.B. mit der Newton-Methode als Iterationsverfahren.
+
+\subsection{Momentenmethode}
+Der \textit{Momentenmethode} liegt die Idee zugrunde, dass die Momente einer Zufallsvariable bzw. einer Wahrscheinlichkeitsverteilung durch Stichprobenmomente geschätzt werden können. \\\\Sei dazu $X_1,\dots,X_n$ eine Stichprobe und $\Theta \subseteq \R^m$ der Parameterraum. Für jeden Parameter $\theta = (\theta_1,\dots,\theta_m) \in \Theta$ sei $X_1,\dots,X_n$ i.i.d. unter dem Wahrscheinlichkeitsraum $(\Omega, \mathcal{F}, P_\theta)$.
+
+\begin{definition}[\textbf{Empirisches Moment}]
+Für $k\in \{1,\dots,m\}$ sei das $k$-te \textit{empirische Moment} oder \textit{Stichprobenmoment} $\widehat{m}_k$ der Realisierungen $(x_1,\dots,x_n)$ definiert durch
+$$ \widehat{m}_k (x_1, \dots, x_n) := \frac{1}{n} \sum_{i=1}^n x_i^k $$
+\end{definition}
+
+\subsubsection*{Annahmen}
+\begin{itemize}
+\item[(i)] $\E_\theta [|X_1|^m] < \infty$ für jedes $\theta \in \Theta$
+\item[(ii)] Für jedes $k \in \{1,\dots,m\}$ ist das $k$-te Moment $m_k^\theta := \E_\theta [X_1^k]$ der Stichprobenvariablen eine bekannte Funktion des Parametervektors $\theta$. Konkret:
+$$ \forall k\in \{1,\dots,m\}. \; \exists \ g_k : \Theta \to \R \mbox{ (borel-messbar)}. \; \forall \theta \in \Theta. \quad m_k^\theta = g_k(\theta_1,\dots,\theta_m)$$ 
+\end{itemize}
+Beachte, dass wir aufgrund der Tatsache, dass die $X_i$ i.i.d. sind, diese Eigenschaften nur für $X_1$ überprüfen müssen. Sind diese Annahmen erfüllt, so kann man die Momentenmethode nach dem folgenden Schema anwenden.
+\subsubsection*{Methode}
+\begin{enumerate}
+\item Für gegebene Realisierungen $x_1,\dots,x_n$ bestimmen für jedes $k\in\{1,\dots,m\}$ das $k$-te empirische Moment.
+\item Stelle ein Gleichungssystem für die Unbekannten Paramter $\theta_1, \dots, \theta_m$ auf, in dem das $k$-te empirische Moment dem $k$-ten Moment gleichgesetzt wird, also:
+$$ \widehat{m}_k(x_1,\dots,x_n) = g_k(\theta_1, \dots, \theta_m)\quad \quad \quad k=1,\dots, m$$
+\item Überprüfe, ob dieses LGS eine eindeutige Lösung besitzt. Dann entspricht die Lösung $\widehat{\theta}=\widehat{\theta}(x_1,\dots,x_n) \in \Theta$ unserer Schätzung für die Paramter $\theta$.
+\end{enumerate}
+\begin{definition}[\textbf{Momenten-Schätzer}]
+Der Vektor $\widehat{\theta}(X_1,\dots,X_n)$ heisst \textit{Momenten-Schätzer} des Parameters $\theta$.
+\end{definition}
+\subsubsection*{Beispiel: Normalverteilte Stichprobenvariablen}
+Sei $X_1, \dots, X_n$ i.i.d. $\mathcal{N}(\mu, \sigma^2)$-verteilt mit unbekanntem Parameter $\theta = (\mu, \sigma^2)$ und in diesem Fall gilt $g_1(\mu, \sigma^2) = \mu$ und $g_2(\mu, \sigma^2) = \mu^2 + \sigma^2$. Damit berechnen wir den ML-Schätzer für $\theta = (\mu, \sigma^2)$:
+\begin{eqnarray*}
+T_1 & = & \frac{1}{n}\sum_{i=1}^n X_i =: \overline{X_n} \\
+T_2 & = & \frac{1}{n}\sum_{i=1}^n (X_i - \overline{X_n})^2 
+\end{eqnarray*}
+Dieser Schätzer $T=(T_1,T_2)$ ist im Allgemeinen der Momementenschätzer für  $(E_\theta[X], \mathrm{Var}_\theta [X])$. Dieser ist aber nicht erwartungstreu, denn es gilt $\E_\theta[T_2] = \frac{n-1}{n} \mathrm{Var}_\theta[X]$ . Man kann aber durch eine kleine Modifikation einen erwartungstreuen Schätzer $T' = (T_1', T_2')$ mit $T_1' = T_1$ und $T_2' = S^2$, der \textit{empirischen Stichprobenvarianz}.
+$$ S^2 := \frac{1}{n-1} \sum_{i=1}^n (X_i - \overline{X_n})^2 $$
+
+\subsection{Verteilungsaussagen}
+Es gibt sehr wenige allgemeingültige Aussagen über Verteilungen von Schätzern. Da diese aber von grosser Wichtigkeit in der Statistik sind, verschafft man sich einen approxmativen Zugang über die Normalverteilung. Schätzer sind nämlich häufig Funktion einer Summe von i.i.d. Zufallsvariablen im Modell $P_\theta$. Diese Summe ist nach dem ZGS approximativ normalverteilt unter $P_\theta$. Für normalverteilte Stichproben existieren nämlich exakte Aussagen. Zuerst führen wir aber zwei neue Verteilungen ein:
+
+\subsubsection*{$\bs{\chi^2}$-Verteilung}
+Die $\chi^2$-Verteilung mit $n$ Freiheitsgraden (bezeichnet mit $\chi_n^2$) ist eine stetige Verteilung einer Zufallsvariablen $X$. Es gibt folgenden Zusammenhang mit der Normalverteilung:
+\begin{lemma}
+$ (\forall i \in \{1,\dots, n\}. \quad Z_i \sim \mathcal{N}(0,1) \; \land \; Z_i \mbox{ i.i.d.}) \implies \left( \sum_{i=1}^n Z_i^2 \right) \sim \chi_n^2$
+\end{lemma}
+Zudem ist die $\chi^2$-Verteilung ein Spezialfall der Gamma-Verteilung, es gilt nämlich:
+\begin{lemma}
+$ X \sim \chi_n^2 \LLRA X \sim \mathit{Ga}(\frac{n}{2}, \frac{1}{2})$
+\end{lemma}
+Damit ist eine $\chi_2^2$-Verteilung gerade die Exponentialverteilung mit $\lambda = \frac{1}{2}$. Sei $X  \sim \chi_n^2$, dann gilt:
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \R^+_0$
+\item \textbf{Erwartungswert:} $\E[X] = n$
+\item \textbf{Varianz:} $\mathrm{Var}[X] = 2n$
+\item \textbf{Dichtefunktion:} $$ f_X(x) = \begin{cases} \frac{1}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})} y^{\frac{n}{2}-1} e^{-\frac{1}{2}y} & \mbox{für } x \geq 0 \\ 0 & \mbox{für } x < 0 \end{cases}$$
+\end{itemize}
+Die $\chi^2$-Verteilung ermöglicht ein Urteil über die Kompabilität eines funktionalen Zusammenhangs mit empirischen Messpunkten. So kann bspw. bestimmt werden, ob eine Gerade, Logarithmhus oder eine Parabel die gesammelten Daten am besten erklärt. 
+\subsubsection*{$\bs{t}$-Verteilung}
+Die $t$-Verteilung mit $n$ Freiheitsgraden gehört zu einer stetigen Zufallsvariablen $Z$. Sie entsteht durch die standarisierte Schätzfunktion des Stichprobenmittelwerts normalverteilter Daten, wenn bei der Standarisierung des Mittelwerts die Varianz (weil sie nicht bekannt ist) durch die \textit{Stichprobenvarianz} abgeschätzt werden muss. Die standardisierte Schätzfunktion ist dann nicht mehr normalverteilt, sondern folgt der $t$-Verteilung. \\
+
+Sei $Z \sim t_n$. Dann hat $Z$ folgende Eigenschaften:
+\begin{itemize}
+\item \textbf{Dichtefunktion:} $$f_Z(z) = \frac{\Gamma\left( \frac{n+1}{2}\right))}{\sqrt{n\pi} \cdot \Gamma(\frac{n}{2})} \left(1 + \frac{z^2}{n}\right)^{- \frac{n+1}{2}} \quad \quad \quad z \in \R$$
+$\implies$ für $n=1$ ist dies eine \textit{Cauchy-Verteilung} $\implies$ Erwartungswert existiert für $n=1$ nicht.
+\item für $n\to \infty$ erhält man eine $\mathcal{N}(0,1)$-Verteilung 
+\item \textbf{Erwartungswert:} für $n>1$ gilt: $\E[Z] = 0$
+\item \textbf{Varianz:} für $n>2$ gilt: $\mathrm{Var}[Z] = \frac{n}{n-2}$
+\item \textit{Faustregel:} ab $n=30$ Freiheitsgraden kann man die $t$-Verteilung durch die Normalverteilung approximieren
+\end{itemize}
+Die $t$-Verteilung kann auch anders hergeleitet werden, Seien $X \sim \mathcal{N}(0,1)$ und $Y \sim \chi_n^2$ unabhängig. Dann ist $Z:= \frac{X}{\sqrt{\frac{1}{n} Y}}$ $t$-verteilt mit $n$ Freiheitsgraden.
+
+\begin{satz}[\textbf{Normalverteilte Stichproben}]
+Seien $X_1,\dots, X_n$ i.i.d. $\sim \mathcal{N}(\mu,\sigma^2)$. Dann gilt:
+\begin{itemize}
+\item[(i)] $\overline{X_n} \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)$ und normalisiert $\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)$
+\item[(ii)] $\frac{n-1}{\sigma^2}S^2 = \left(\frac{1}{\sigma^2} \sum_{i=1}^n (X_i - \overline{X_n})^2 \right) \sim \chi_{n-1}^2$
+\item[(iii)] $\overline{X_n}$ und $S^2$ sind unabhängig.
+\item[(iv)] $\frac{\overline{X_n}-\mu}{S / \sqrt{n}} = \frac{\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}}}{S/\sigma} = \frac{\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}} \sim t_{n-1}$
+\end{itemize}
+\end{satz}
+Die Hauptaussage dieses Satzes ist (iii). (i) ist schon bekannt und (iv) folgt unmittelbar aus der Herleitung der $t$-Verteilung.
+
+

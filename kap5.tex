@@ -1,0 +1,96 @@
+\section{Ungleichungen und Grenzwertsätze}
+\subsection{Wahrscheinlichkeit \& Konvergenz}
+\begin{definition}[\textbf{Konvergenz in Wahrscheinlichkeit}]
+Sei $X_1,X_2,\dots$ und $Y$ ZV auf gemeinsamen Wahrscheinlichkeitsraum.
+\begin{itemize}
+\item[(i)] $X_1,X_2,\dots$ konvergiert gegen $Y$ \textit{in Wahrscheinlichkeit} falls $$\forall \varepsilon >0. \quad \lim_{n\to \infty} P[ |X_n -Y| > \varepsilon] = 0$$
+\item[(ii)] Für $p>0$ konvergiert die Folge $X_1,X_2,\dots$ gegen $Y$ \textit{in} $L^p$ falls $$\lim_{n\to\infty} \E[ |X_n - Y|^p] = 0$$
+\item[(iii)] $X_1,X_2,\dots$ konvergiert gegen $Y$ \textit{P-fast sicher} falls $$ P\left[ \lim_{n\to\infty} X_n = Y \right] = P \left[ \left \{ \omega \in \Omega \with \lim_{n\to\infty} X_n(\omega) = Y(\omega) \right \} \right] = 1$$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[\textbf{Konvergenz in Verteilung}]
+Seien $X_1,X_2,\dots,$ und $Y$ ZV auf möglicherweise verschiedenen Wahrscheinlichkeitsräumen mit Verteilungsfunktionen $F_1,F_2,\dots$ und $F_Y$. Dann konvergiert $X_1,X_2, \dots$ gegen $Y$ \textit{in Verteilung} falls
+$$ \lim_{n\to\infty} F_n(x) = F_Y(x) \quad \quad \mbox{für alle } x\in R, \mbox{wo } F_Y \mbox{ stetig ist}$$
+\end{definition}
+
+\begin{satz}
+Es gilt folgende Äquivalenz:
+$$ X_1,X_2,\dots \mbox{ konvergiert in Verteilung gegen } Y \LLRA \lim_{n\to\infty} \E[f(X_n)] = \E[f(Y)] \mbox{ für jedes beschränkte stetige } f:\R\to\R$$
+\end{satz}
+\subsection{Ungleichungen}
+\begin{satz}[\textbf{Markov-Ungleichung}]
+Sei $X$ eine Zufallsvariable und $g:\mathcal{W}(X)\to [0, \infty)$ eine wachsende Funktion. Für jedes $c \in \R$ mit $g(c) > 0$ gilt dann:
+$$ P[X \geq c] \leq \frac{\E[g(X)]}{g(c)}$$
+\end{satz}
+\underline{Bemerkung:} Insbesondere gilt der satz für die Identitätsfunktion $g=id$. Daraus folgt unmittelbar:
+\begin{satz}[\textbf{Chebyshev-Ungleichung}]
+Sei $Y$ Zufallsvariable mit endlicher Varianz. Für jedes $b>0$ gilt dann:
+$$ P\left[ |Y-\E[Y]| \geq b \right] \leq \frac{\mathrm{Var}[Y]}{b^2}$$
+\end{satz}
+\begin{proof}
+Wähle $X:=|Y-\E[Y]|$ und $g(x) =x^2 $ für $x\geq 0 \implies \E[g(Y)] = \mathrm{Var}[Y]$.
+\end{proof}
+
+\subsection{Gesetz der grossen Zahlen}
+Wir betrachten nun Folgen von Zufallsvariablen mit dem gleichen Erwartungswert und der gleichen Varianz. Uns interessiert das Verhalten des arithmetischen Mittel dieser Folge von Zufallsvariablen.
+\begin{satz}[\textbf{Schwaches Gesetz der grossen Zahlen}]
+Sei $X_1, X_2, \dots$ eine Folge von unabhängigen ZV mit $\E[X_i]= \mu $ und Varianz $\mathrm{Var}[X_i] = \sigma^2$. Sei $\overline{X_n} =\frac{1}{n}\sum_{i=1}^n X_i$. Dann konvergiert $\overline{X_n}$ für $n\to \infty$ in Wahrscheinlichkeit/stochastisch gegen $\mu$.
+\end{satz}
+\begin{proof}
+Betrachte Linearität des EW: $\E[\overline{X_n}] = \frac{1}{n}\sum_{i=1}^n \E[X_i] = \mu$. Da die ZV paarweise unkorreliert sind, gilt auch die Linearität der Varianz und somit $\mathrm{Var}[\overline{X_n}] = \frac{1}{n}\sum_{i=1}^n \mathrm{Var}[X_i] = \frac{\sigma^2}{n}$. Die Chebyshev-Ungleichung liefert damit:
+$$ P \left[ |\overline{X_n}-\mu|> \varepsilon \right] \leq \frac{\mathrm{Var}[\overline{X_n}}{\varepsilon^2} = \frac{\sigma^2}{n\cdot \varepsilon^2}$$
+Dieser Term geht für jedes beliebige $\varepsilon>0$ gegen 0, was \textit{Def. 5.1 (i)} entspricht.
+\end{proof}
+\underline{Bemerkung 1:} Es genügt bereits, wenn $X_i$ nur paarweise unkorreliert sind.\\
+\underline{Bemerkung 2:} Die Existenz des Erwartungswerts ist essentiell, damit das Gesetz gilt: So existiert bspw kein Erwartungswert für die bereits eingeführte \textit{Cauchy-Verteilung}. Damit konvergiert $n\mapsto \overline{X_n}(\omega)$ nicht, denn Summen von Cauchy-verteilten Zufallsvariablen sind wiederum Cauchy-verteilt.
+
+\subsubsection*{Monte-Carlo-Integration}
+Wir wollen für $h:[0,1]^d \to \R$ ein Integral $I:= \int_{[0,1]^d} h(\vec{x}) \ d\vec{x}$ berechnen, welches auch numerisch schwer lösbar ist. Dafür können wir $I$ als einen Erwartungswert auffassen. Sei $d=1$. Ist $U \sim \mathcal{U}(0,1)$, dann gilt 
+$$ \E[h(U)] ) = \int_{\R} h(x)f_U(x) \ dx = \int_0^1 h(x) \ dx = I$$
+Die letzte Gleichheit gilt, weil die Dichte von $U$ auf $[0,1]$ konstant 1 ist, und sonst 0. Deshalb können wir mit einem Zufallszahlengenerator eine Folge $U_1,U_2,\dots$ generieren mit $U_i \sim \mathcal{U}(0,1)$ und den Wert von $I$ mit dem schwachen GGZ approximieren:
+$$ \overline{h(U_n)} = \frac{1}{n} \sum_{i=1}^n h(U_i)$$ 
+Damit ist aber auch gleich klar, wieso man eine stärkere Aussage möchte, denn der berechnete Wert liegt nur mit grosser Wahrscheinlichkeit sehr nahe bei $I$, aber man weiss nicht, ob eine feste Realisierung $\omega$ in dieser guten Approximationsmenge liegt.
+
+\begin{satz}[\textbf{Starkes Gesetz der grossen Zahlen}
+Sei $X_1,X_2,\dots$ eine Folge von unabhängigen Zufallsvariablen mit gleicher Verteilung und EW $\mu$ endlich. Für das arithmetische Mittel $\overline{X_n} := \frac{1}{n} \sum_{i=1}^n X_i$ gilt dann, dass $\overline{X_n}$ \textit{P-fast sicher} (P.f.s.) gegen $\mu$ konvergiert, also
+$$ P \left[ \left \{ \omega \in \Omega \with \overline{X_n}(\omega) \underset{n\to\infty}{\longrightarrow} \mu \right \} \right] $$
+\end{satz}
+Für die Monte-Carlo Integration bedeutet dies, dass unserer berechneter Wert mit Wahrscheinlichkeit 1 nahe bei $I$ liegt. Schlechte Approximationen sind zwar möglich, aber mit Wahrscheinlichkeit 0.
+
+\subsection{Zentraler Grenzwertsatz}
+Wir bezeichnen unabhängige gleichverteilte Zufallsvariablen als \textit{i.i.d.} für \textit{independent identically distributed}.
+\begin{satz}[\textbf{Zentraler Grenzwert}]
+Sei $X_1,X_2,\dots$ eine Folge von i.i.d. ZV mit EW $\mu$ und Varianz $\sigma^2$. Für die Summe $S_n = \sum_{i=1}^n X_i$ gilt dann:
+$$ \lim_{n\to\infty} P\left[\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x \right] = \Phi(x) \quad \quad \forall x\in\R$$
+Für praktische Anwendungen existieren zwei alternative Notationen:
+\begin{itemize}
+\item $P[S_n^* \leq x ] \approx \Phi(x) \quad$ für $n$ gross
+\item $S_n^* \overset{\mbox{approx.}}{\sim} \mathcal{N}(0,1) \quad$ für $n$ gross
+\end{itemize}
+wobei $S_n^*$ die \textit{Standardisierung von} $S_n$ gennant wird:
+$$ S_n^* = \frac{S_n - n\mu}{\sigma\sqrt{n}}= \frac{S_n - \E[S_n]}{\sqrt{\mathrm{Var}[S_n]}}$$
+\end{satz}
+Daraus folgt $S_n \sim \mathcal{N}(n\mu,n\sigma^2)$ und $\overline{X_n} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n} )$, wobei beide Verteilungen nur approximativ gelten.\\
+
+\textbf{Häufige Anwendung:} \textit{Approximation der Binomialverteilung durch Normalverteilung} weil die Binomialverteilung mühsam zu berechnen ist. Ist $S_n \sim Bin(n,p)$ dann können wir approxmativ sagen, dass $S_n \sim \mathcal{N}(np, np(1-p))$. Fügen wir noch eine additiven Konstante $+\frac{1}{2}$ dazu, die sogenannte \textit{Kontinuitätskorrektur}, so wird das Resultat noch genauer. Dies lässt sich intuitiv dadurch rechtfertigen, dass sich die Binomialverteilung besser approximieren lässt, wenn man die Normalverteilungsdichte unter den ``Stäben" zentriert, statt am linken/rechten Rand zu betrachten. Damit gilt:\\
+\begin{korollar}
+$$ P[a <  S_n \leq b] = P \left[ \frac{a-np}{\sqrt{np(1-p)}} < S_n^* \leq \frac{b-np}{\sqrt{np(1-p)}} \right] \approx \Phi \left(\frac{b+\frac{1}{2}-np}{\sqrt{np(1-p)}}\right) - \Phi \left( \frac{a+\frac{1}{2}-np}{\sqrt{np(1-p)}} \right)$$
+\end{korollar}
+
+\subsection{Grosse Abweichungen \& Chernoff-Schranken}
+\begin{definition}[\textbf{momenterzeugende Funktion}]
+Für eine Zufallsvariable $X$ ist die \textit{momenterzeugende Funktion} definiert als
+$$ M_X(t) := \E[e^{tX}] \quad \mbox{ für } t\in \R$$
+\end{definition}
+Diese ist wohldefiniert auf $[0,\infty]$, kann aber den Wert unendlich annehmen.
+\begin{satz}
+Seien $X_1,\dots,X_n$ i.i.d. für welche die momenterzeugende Funktion $M_X(t)$ für alle $t\in\R$ endlich ist. Dann gilt für jedes $b\in\R$:
+$$ P[S_n \geq b] \leq \exp\left( \inf_{t\in\R} (n\log M_X(t) - tb) \right)$$
+\end{satz}
+Diese Aussage ist zwar stark und liefert ziemlich genaue Abschätzungen, ist allerdings nicht praktisch wegen der momenterzeugenden Funktion. Diese schätzen wir im folgenden Satz nach oben ab:
+
+\begin{satz}[\textbf{Chernoff Schranken}]
+Seien $X_1,\dots,X_n$ unabhängig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X_i$. Sei $\mu_n := \E[S_n] = \sum_{i=1}^n p_i$ und $\delta > 0$. Dann gilt:
+$$ P[S_n \geq (1+\delta) \mu_n] \leq \left( \frac{e^\delta}{(1+\delta)^{1+\delta}\right)^{\mu_n}}$$
+\end{satz}

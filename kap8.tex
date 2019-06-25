@@ -1,0 +1,144 @@
+\section{Tests}
+\underline{Ausganspunkt:} Stichprobe $X_1, \dots, X_n$ und Familie von Wahrscheinlichkeiten $P_\theta$ mit $\theta \in \Theta$ die unsere möglichen Modelle beschreiben. $\implies$ Grundproblem besteht darin, Entscheidung zwischen zwei konkurrierenden Modelkassen zu treffen: der \textit{Hypothese} oder \textit{Nullhypothese} $\Theta_0 \subset \Theta$ oder der \textit{Alternative} $\Theta_A \subseteq \Theta$. Dabei muss zwingend $\Theta_0 \cap \Theta_A = \emptyset$ gelten. Man Schreibt $H_0 \ : \ \theta \in \Theta_0$ und $H_A \ : \ \theta \in \Theta_A$. Falls keine Alternative explizit definiert ist, so wählen wir $\Theta_A = \Theta \setminus \Theta_0$. Wir unterscheiden:
+\begin{itemize}
+\item \textit{einfache Hyptohesen} bestehen aus einem einzelnen Wert, also z.B. $\Theta_0 = \{\theta_0\}$
+\item \textit{zusammengesetzte Hypothesen} bestehen aus mehreren Werten 
+\end{itemize}
+Ein \textit{Test} ist im Allgemeinen eine Entscheidungsregel, die zu gegebenen Daten $x_1,\dots,x_n$ einen Wert $\{0,1\}$ liefert und dieser ist $1 \LLRA$ die Nullhypothese soll abgelehnt werden. Formal:
+\begin{definition}[\textbf{Test, Teststatistik}]
+Ein \textit{Test} besteht aus 
+\begin{itemize}
+\item einer Abbildung $t: \R^n \to \R$, $(x_1,\dots,x_n) \mapsto t(x_1,\dots,x_n)$
+\item und einem \textit{kritischen Bereich} oder \textit{Verwerfungsbereich} $K \subseteq \R$.
+\end{itemize}
+Die Zufallsvariable $T = t(X_1,\dots,X_n)$ heisst \textit{Teststatistik}.
+Die Entscheidungsregel ist definiert durch die Zufallsvariable
+$$ I_{\{t(x_1,\dots,x_n) \in K\}}$$ d.h. man verwirft die Hypothese genau dann, wenn der realisierte Wert $t(x_1,\dots,x_n)$ im Verwerfungsbereich $K$ liegt.
+\end{definition} 
+
+Für eine Realisierung $\omega$ gilt $t(x_1,\dots,x_n) = t(X_1(\omega), \dots, X_n(\omega)) = T(\omega)$. Weil $T$ eine Zufallsvariable ist, ist der Raum $\{T \in K\} \subseteq \Omega$ messbar. Damit kann für jedes Modell $P_\theta$ die Wahrscheinlichkeit $P_\theta[T\in K]$ betrachtet werden.
+
+\subsection*{Arten von Fehlern}
+\begin{itemize}
+\item \textit{Fehler 1. Art:} Hypothese zu Unrecht abgelehnt $\implies$ $\theta \in \Theta_0$ und $T\in K$
+\item \textit{Fehler 2. Art:} Hypothese zu Unrecht nicht verworfen, d.h. die Hypothese wird akzeptiert obwohl sie falsch ist. $\implies \theta \in \Theta_0$ und $T\notin K$.
+\end{itemize}
+$\implies$ man würde gerne beide Fehler-Wahrscheinlichkeiten minimieren. Dazu sollte $\theta \mapsto P_\theta[T \in K]$ auf $\Theta_0$ möglichst klein sein, aber gleichzeitig möglichst gross in $\Theta_A$. $\implies$ oft nicht möglich, deshalb folgendes Verfahren:
+\begin{enumerate}
+\item Man wählt ein \textit{Signifikanzniveau} $\alpha \in (0,1)$ und kontrolliert die Wahrscheinlichkeit eines Fehlers erster Art durch $\alpha$:
+$$ \sup_{\theta \in \Theta_0} P_\theta [T \in K] \leq \alpha $$
+\item Man versucht die Wahrscheinlichkeit für einen Fehler zweiter Art $P_\theta[T \notin K]$ für $\theta \in \Theta_A$ zu minimieren. Dazu maximiert man die \textit{Macht des Tests} $$\beta:\Theta_A \to [0,1] \quad \quad \quad \quad \theta \mapsto \beta(\theta) := P_\theta[T \in K]$$
+Damit ergibt sich der Zusammenhang $1-\beta(\theta) = P_\theta[T \in K]$.
+\end{enumerate}
+
+$\implies$ asymmetrisches Vorgehen führt dazu, dass es schwieriger ist, eine Hypothese zu verwerfen, als diese zu behalten. Das führt zu folgendem Verhalten in der Statistik:
+\begin{mdframed}[backgroundcolor=red!20]
+In einem Test verwendet man als Hypothese immer die Negation der eigentlich gewünschten Aussage.
+\end{mdframed}
+Aufgrund der Asymmetrie kann es durchaus vorkommen, dass bei Vertauschen von \textit{Hypothese} und \textit{Alternative} unterschiedlich entschieden wird.
+
+\subsection{Konstruktion von Tests}
+\begin{definition}[\textbf{Likelihood-Quotient}]
+Sei $L(x_1,\dots,x_n;\theta)$ die Likelihood Funktion und $\theta_0 \in \Theta_0$ und $\theta_A \in \Theta_A$. Dann definieren wir den Likelihood-Quotienten als
+$$ R(x_1,\dots,x_n; \theta_0, \theta_a ) := \frac{L(x_1,\dots,x_n; \theta_0)}{L(x_1,\dots,x_n;\theta_A)}$$
+\end{definition}
+Je kleiner dieser Quotient wird, desto wahrscheinlicher sind die Beobachtungen im Modell $P_{\theta_a}$ im Gegensatz zum Modell $P_{\theta_0}$. $\implies$ wähle als Teststatistik $T= R(X_1,\dots, X_n; \theta_0, \theta_A)$ und als kritischen Bereich $K:=[0,c)$. Sind Hypothese und Alternative jeweils einfach, so ist diesr Test optimal:
+
+\begin{satz}[\textbf{Neyman-Pearson-Lemma}]
+$\Theta_0 = \{\theta_0\}, \Theta_A = \{\theta_A\}$. Sei die Teststatistik $T := (X_1,\dots, X_n; \theta_0, \theta_A)$ mit $K:=[0,c)$ und sei $\alpha^* := P_{\theta_0} [T \in K] = P_{\theta_0}[T < c]$. Dann ist der \textit{Likelihood-Quotienten-Test} mit $T$ und $K$ im folgenden Sinne optimal:
+\begin{center}
+jeder andere Test mit Signifikanzniveau $\alpha \leq \alpha^*$ hat kleinere \textit{Macht des Tests},
+\end{center}
+was bedeutet, dass die Wahrscheinlichkeit für einen Fehler 2. Art grösser ist. Etwas formaler bedeutet dies für jeden anderen Test $(T',K')$:
+$$ P_{\theta_0} [T' \in K] \leq \alpha^* \implies P_{\theta_A}[T' \in K] \leq P_{\theta_A} [T\in K]$$
+\end{satz}
+In den allermeisten Fällen sind weder Hypothese noch Alternative einfach. Um dennoch ein systematisches Vorgehen zu liefern, verallgemeinern wir zuerst den Likelihood-Quotienten:
+\begin{eqnarray*}
+R(x_1,\dots, x_n) & := & \frac{\sup_{\theta \in \Theta_0} L(x_1,\dots, x_n;\theta)}{\sup_{\theta \in \Theta_A} L(x_1,\dots, x_n;\theta)} \\
+\widetilde{R}(x_1,\dots, x_n) & := & \frac{\sup_{\theta \in \Theta_0} L(x_1,\dots, x_n;\theta)}{\sup_{\theta \in (\Theta_A \cup \Theta_0)} L(x_1,\dots, x_n;\theta)}
+\end{eqnarray*}
+Nun wählt man eine dieser beiden Quotienten als Teststatistik $T_0$ mit einem kritischen Bereich $K_0:=[0,c_0)$. $C_0$ muss dabei so gewählt werden, dass der Test ein gewähltes Signifikanzniveau einhält.\\
+
+Oft kann man auch durch Umformen eine einfachere Teststatistik finden, in dem man versucht, eine Beziehung der Art ``Quotient klein \textit{genau dann, wenn} ... " herzuleiten. Diese Bedingung kann man dann als Teststatistik verwenden. Schlussendlich braucht man noch die Verteilung von $T$ unter der Hypothese $H_0$, um den kritischen Bereich $K$ passend zum gewünschten Signifikanzniveau zu finden.
+
+\subsection{$\bs{p}$-Wert}
+\begin{definition}[$\bs{p}$\textbf{-Wert}]
+ei $\Theta_0 = \{\theta_0\}$. Dann ist der $p$\textit{-Wert} die Wahrscheinlichkeit, einen mindestens so extremen Wert der Teststatistik zu erhalten, falls die Nullhypothese wahr ist. Die Alternativhypothese bestimmt dabei, was als ``extremer" gilt.
+\end{definition}
+Haben wir also Daten $(x_1,\dots,x_n)$ gesammelt und betrachten wir den Wert der Teststatistik $t(x_1,\dots,x_n)$, so interessiert es uns, wie extrem dieser Wert unter Annahme der Nullhypothese ist. \\
+
+\underline{Bemerkung:} Der $p$\textit{-Wert} gibt \textcolor{red}{\textbf{nicht}} an, wie wahrscheinlich die Nullhypothese bei Erhalt dieses Wertes ist!\\
+
+\begin{lemma}
+Am $p$-Wert kann direkt der Testentscheid abgelesen werden, liegt er unter dem Signifikanzniveau $\alpha$, wird die Nullhypothese verworfen, ansonsten nicht.
+\end{lemma}
+Dies lässt sich wie folgt begründen: Ist der $p$-Wert kleiner als $\alpha$, dann liegt der beobachtete Wert der Teststatistik sicher im Verwerfungsbereich.
+
+\subsection{$\bs{z}$-Test}
+Test für den Erwartungswert einer Normalverteilung mit bekannter Varianz der Grundgesamtheit. Seien also $X_1,\dots,X_n \sim \mathcal{N}(\theta, \sigma^2)$-verteilt (i.i.d.) für bekanntes $\sigma >0$.
+\begin{itemize}
+\item \textbf{Hypothese:} $H_0 : \theta = \theta_0$
+\item \textbf{Teststatistik:} $$ T = \frac{\overline{X}_n - \theta_0}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1) \quad \quad \mbox{ unter } P_{\theta_0}$$
+\item \textbf{Kritische Bereiche} (zum Signifikanzniveau $\alpha \in (0,1)$) kann au Tabelle abgelesen werden:
+\begin{table}[htp]
+\centering
+\label{z-test}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Alternative} $\bs{H_A}$                                 & \textbf{Kritischer Bereich}                            \\ \midrule
+$\theta < \theta_0$ & $ (-\infty, z_\alpha)$                                 \\
+$\theta > \theta_0 $                                       & $ (z_{1-\alpha}, \infty)$                              \\
+$\theta \neq \theta_0$                                     & $ (-\infty, z_{\alpha/2}) \cup (z_{1-\alpha/2}, \infty)$ \\ \bottomrule
+\end{tabular}
+\end{table}
+Dabei bezeichnet $z_\alpha$ das $\alpha$-Quantil der Standardnormalverteilung. Man findet es, indem man in der Tabelle der Standardnormalverteilung nach $\Phi^{-1}(\alpha)$ sucht. Aus Symmetriegründen gilt $z_\alpha = - z_{1-\alpha}$.
+$$ \Phi(z_\alpha) = \frac{1}{\sqrt{2\pi}} \int \limits_{-\infty}^{z_\alpha} e^{-x^2/2} \ dx = \alpha$$
+\end{itemize}
+
+\subsection{$\bs{t}$-Test}
+Test für den Erwartungswert einer Normalverteilung mit unbekannter Varianz. Seien also $X_1,\dots,X_n \sim \mathcal{N}(\mu, \sigma^2)$-verteilt (i.i.d.) für unbekanntes $\sigma >0$.
+\begin{itemize}
+\item \textbf{Hypothese:} $H_0 : \mu = \mu_0$. Formal präziser wäre $\Theta_0 = \{\theta = (\mu_0, \sigma) \with \sigma > 0 \}$
+\item \textbf{Teststatistik:} $$ T = \frac{\overline{X}_n - \mu_0}{S/\sqrt{n}} \sim t_{n-1} \quad \quad \mbox{unter } P_{\mu_0} \mbox{, wobei } S^2 := \mbox{empirische Stichprobenvarianz}$$
+\item \textbf{Kritische Bereiche} (zum Signifikanzniveau $\alpha \in (0,1)$) kann aus Tabelle abgelesen werden:
+\begin{table}[htp]
+\centering
+\label{t-test}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Alternative} $\bs{H_A}$                                 & \textbf{Kritischer Bereich}                            \\ \midrule
+$\mu < \mu_0$ & $ (-\infty, t_{n-1, \alpha})  $                               \\
+$\mu > \mu_0 $                                       & $ (t_{n-1, 1-\alpha}, \infty)$                              \\
+$\mu \neq \mu_0$                                     & $ (-\infty, t_{n-1, \alpha/2}) \cup (t_{n-1, 1-\alpha/2}, \infty)$ \\ \bottomrule
+\end{tabular}
+\end{table}
+\end{itemize}
+Dabei bezeichnet $t_{m,\alpha}$ das $\alpha$-Quantil der $t_m$-Verteilung. Aus Symmetriegründen gilt $t_{m,\alpha} = - t_{m,1-\alpha}$:
+$$ \int \limits_{-\infty}^{t_{m,\alpha}} f_m(x) \ dx = \alpha $$
+wobei $f_m$ die Dichte der $t_m$ Verteilung ist. Diesen Wert erhält man aus einer Tabelle zur $t$-Verteilung.
+
+\subsection{Gepaarte Zweistichproben-Tests für Normalverteilungen}
+Seien $X_1,\dots, X_n, Y_1, \dots, Y_n$ Zufallsvariablen, so dass $(X_i,Y_i)$ natürliche Paare bilden. Bezeichnen wir nun $Z_i := X_i - Y_i$.
+\begin{itemize}
+\item \textit{bekannte Varianz:} Falls $Z_1,\dots,Z_n \sim \mathcal{N}(\theta, \sigma^2)$ (i.i.d.) für bekanntes $\sigma >0$, dann kann $z$-Test analog zu Kapitel 8.3 angewendet werden.
+\item \textit{unbekannte Varianz:} Falls $Z_1,\dots,Z_n \sim \mathcal{N}(\mu, \sigma^2)$ (i.i.d.) für unbekanntes $\sigma >0$, dann kann $t$-Test analog zu Kapitel 8.4 angewendet werden.
+\end{itemize}
+
+\subsection{Ungepaarte Zweistichproben-Tests für Normalverteilungen}
+Seien $X_1,\dots,X_n \sim \mathcal{N}(\mu_X, \sigma_X^2) $ (i.i.d.) und $Y_1,\dots,Y_m \sim \mathcal{N}(\mu_Y, \sigma_Y^2)$ (i.i.d.), so dass alle $X_i,Y_j$ unabhängig.
+\subsubsection{Normalverteilungen mit bekannten Varianzen}
+Seien also $\sigma_X, \sigma_Y$ bekannt.
+\begin{itemize}
+\item \textbf{Hypothese:} $H_0 : \mu_X - \mu_Y = \mu_0 $ (bspw. $\mu_0 = 0$)
+\item \textbf{Teststatistik:} $$ T = \frac{\overline{X}_n - \overline{Y}_m - \mu_0}{\sqrt{\frac{\sigma_X^2}{n} + \frac{\sigma_Y^2}{m}}} \sim \mathcal{N}(0,1) \quad \quad \mbox{für } P_{\mu_0}$$
+Die kritischen Bereiche zum Signifikanzniveau sind analog zur Tabelle aus Kapitel 8.3.
+\end{itemize}
+\subsubsection{Normalverteilungen mit unbekannten aber gleichen Varianzen}
+Sei also $\sigma_X = \sigma_Y = \sigma$ für $\sigma >0$ unbekannt.
+\begin{itemize}
+\item \textbf{Hypothese:} $\mu_X - \mu_Y = \mu_0$ (bspw. $\mu_0 = 0$)
+\item \textbf{Teststatistik:} $$ T = \frac{\overline{X}_n - \overline{Y}_m - \mu_0}{S \sqrt{\frac{1}{n}+\frac{1}{m}}} \sim t_{n+m-2} \quad \quad \mbox{ unter } P_{\mu_0} $$
+\item \textbf{Kritische Bereiche:} analog zu Tabellae aus Kapitel 8.4, jedoch ist nun die Anzahl der Freiheitsgrade $n+m-2$ und nicht mehr $n-1$.
+\end{itemize}
+Dabei benutzen wir für die Varianz ein gewichtetes Mittel aus den Stichprobenvarianzen $S_X, S_Y$, definiert als
+$$ S^2 := \frac{(n-1)S_X^2 + (m-1)S_Y^2}{n+m-2}$$

@@ -1,0 +1,86 @@
+\section{Wichtige Diskrete Verteilungen}
+
+\subsection{Diskrete Gleichverteilung}
+Die \textit{diskrete Gleichverteilung} existiert nur auf einer endlichen Menge. Sie gehört zu einer ZV $X$ mit Wertebereich $\mathcal{W}$ und Gewichtsfunktion 
+$$p_X(x_k) = P[X=x_k]=\frac{1}{N} \mbox{   für } k=1,\dots, N$$
+
+\subsection{Unabhängige 0-1 Experimente}
+Wir betrachten eine Folge gleichartiger Experimente, die alle nur mit Erfolg oder Misserfolg enden können und betrachten die Ereignisse $A_i = \{\mbox{Erfolg beim }i\mbox{-ten Experiment}\}$. Wir nehmen an, dass alle $A_i$ unabhängig sind und dass $P[A_i]=p$ für alle $i$. Wir können nun eine Indikatorfunktion $Y_i = I_{A_i}$ für jedes $i$ definieren, und danach die Folge von Ereignissen als Folge von 0 und 1 codieren. Dies werden wir für die nächsten Verteilungen brauchen.
+
+\subsection{Bernoulli-Verteilung}
+Wir machen ein einziges 0-1 Experiment und nennen das Ergebnis $X \implies X \sim Be(p)$ 
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1\}$
+\item \textbf{Gewichtsfunktion:} $p_X(x) := \begin{cases} P[X=1]=p & \mbox{falls } x=1 \\ P[X=0]=1-p & \mbox{falls } x=0 \end{cases}\quad \quad \quad$ also insgesamt $p_X(x)= p^x(1-p)^{1-x}$
+\item \textbf{Erwartungswert:} $\E[X]=p \quad \quad \quad$
+\item \textbf{Varianz:} $\mbox{Var}[X] = p(1-p)$
+\end{itemize}
+
+\subsection{Binomialverteilung}
+Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. Sei $X$ die Anzahl der Erfolge $\implies X \sim Bin(n,p)$.
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1,2,\dots,n\}$
+\item \textbf{Gewichtsfunktion:} $p_X(k) = P[X=k] = \binom{n}{k} p^k (1-p)^{n-k} \quad \quad \mbox{für } k = 0,1,\dots, n$
+\item Summe von $n$ unabhängigen bernoulli-verteilten ZV mit gleichem Parameter $p$
+\item \textbf{Erwartungswert:} $\E[X] = \sum_{i=1}^n \E[Y_i] = np$
+\item \textbf{Varianz:} Var$[X] = \sum_{i=1}^n \mbox{Var}[Y_i] = np(1-p)$
+\end{itemize}
+Für die Binomialverteilung existiert eine Rekursionsformel:
+$$p(k+1, n) = \frac{p}{1-p} \frac{n-k}{k+1} p(k,n)$$
+
+\subsection{Geometrische Verteilung}
+Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$ und warten auf den ersten Erfolg. Sei $X = \inf \{i\in\N \with A_i$ tritt ein $\} = \inf \{i \in \N \with Y_i = 1\}$ die Wartezeit $\implies X \sim Geom(p)$.
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X)=\{1,2,\dots\} = \N$
+\item \textbf{Gewichtsfunktion:} $p_X(k) = P[X=k] = p(1-p)^{k-1} \quad \quad $ für $k=1,2,3\dots $
+\item \textbf{Erwartungswert:} $P[X > l] = (1-p)^l \implies \E[X] = \sum_{l=0}^\infty P[X>l] = \sum_{l=0}^\infty (1-p)^l = \frac{1}{1-(1-p)} = \frac{1}{p}$
+\item \textbf{Varianz:} Var$[X] = \frac{1-p}{p^2}$
+\end{itemize}
+
+\begin{mdframed}
+\subsubsection*{Coupon Collector Problem}
+\underline{Gesucht:} Anzahl Käufe, bis man alle Bilder/Coupons besitzt. $\to$ Sei $X_i$ die Anzahl Käufe bis zum $i$-ten verschiedenen Bild, unter Annahme dass man schon $i-1$ Bilder besitzt. $\implies X_i$ sind geometrisch verteilt, und $X= \sum_{i=1}^n$. Dann kann die Linearität des Erwartungswert ausgenutzt werden, um $\E[X]$ zu berechnen.
+\end{mdframed}
+
+\subsection{Negativbinomiale Verteilung}
+Betrachten wir erneut eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. Nun interessiert uns allerdings die Wartezeit auf den $r$-ten Erfolg, wobei $r\in \N$. Dies ist eine Verallgemeinerung der \textit{geometrischen Verteilung}, welche den Spezialfall $r=1$ abdeckt. Die Zufallsvariable $X$ lässt sich schreiben als
+$$ X = \inf \left\{k \in \N \: \middle| \: \sum_{i=1}^k I_{A_i} = r\right\} = \inf \left\{k \in \N \: \middle|\: \sum_{i=1}^k Y_i = r\right\}$$
+Wir schreiben $X \sim NB(r,p)$
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \{r, r+1, r+2, \dots\}$
+\item \textbf{Gewichtsfunktion:} $p_x(k) = P[X=k] = \binom{k-1}{r-1} p^r (1-p)^{k-r}$
+\item Sind ZV $X_1,\dots,X_r \sim Geom(p)$ und unabhängig $\implies \sum_{i=1}^r X_i =: X \sim NB(r,p)$
+\item \textbf{Erwartungswert:} $\E[X] = \sum_{i=1}^r \E[X_i] = \frac{r}{p}$
+\item \textbf{Varianz:} Var$[X] = \sum_{i=1}^r \mbox{Var}[X_i] = \frac{r(1-p)}{p^2}$
+\end{itemize}
+
+\subsection{Hypergeometrische Verteilung}
+Wir unterscheiden zwei Arten von Gegenständen. Gegeben sind $n$ Gegenstände, $r$ davon von Typ 1 und $n-r$ von Typ 2. Man zieht nun $m$ Gegenstände ohne Zurücklegen und interessiert sich für die Anzahl der Gegenstände von Typ 1. Sei $X$ diese Anzahl $\implies X \sim Hypergeometric(n,m,r)$.
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1, \dots, \min(m,r)\}$
+\item \textbf{Gewichtsfunktion:} $p_X(k) = \frac{\binom{r}{k} \binom{n-r}{m-k}}{\binom{n}{m}}$ für $k\in \mathcal{W}(X)$.
+\item \textbf{Erwartungswert:} $\E[X] = \frac{rm}{n}$
+\item \textbf{Varianz:} Var$[X] = \frac{(n-r) n m (n-m)}{(2n-r)^2(n-1)}$
+\end{itemize}
+\underline{Bemerkung:} Die Varianz der hypergeometrischen Verteilung ist sehr schwierig herzuleiten, und wird im Skript genau wie der Erwartungswert gar nicht aufgeführt.
+
+\subsection{Poisson-Verteilung}
+Die Poisson-Verteilung erhält man nicht aus einem konkreten Experiment, sondern durch einen Grenzübergang aus der Binomialverteilung $\implies$ gut zur Modellierung von seltenen Ereignissen. Man schreibt $X \sim \mathcal{P}(\lambda)$ für ein $\lambda \in (0, \infty)$
+\begin{itemize}
+\item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1,2,\dots\} = \N_0$
+\item \textbf{Gewichtsfunktion:} $p_X(k) = e^{-\lambda} \frac{\lambda^k}{k!}$ für $k= 0,1,2,\dots$
+\item \textbf{Erwartungswert:} $\E[X] = \lambda$
+\item \textbf{Varianz:} Var$[X] = \lambda $
+\end{itemize}
+
+\begin{mdframed}
+\subsubsection*{Herleitung}
+Sei $X_n$ für jedes $n$ eine ZV mit $X \sim Bin(n,p)$ und $np_n = \lambda$ und damit $p_n = \frac{\lambda}{n}$, welches für $n\to\infty$ gegen 0 geht. Bekanntlich gilt
+\begin{eqnarray}
+P[X_n = k] & = & \binom{n}{k} p_n^k (1-p_n)^{n-k} \\ & = & \frac{n!}{k!(n-k)!} \left(\frac{\lambda}{n} \right)^k \left(1-\frac{\lambda}{n}\right)^{-k} \\
+& = & \frac{\lambda^k}{k!} \cdot \underbrace{\frac{n(n-1) \cdots (n-k+1)}{n^k}}_{= 1 \mbox{ für } n\to \infty} \cdot \underbrace{\left(1-\frac{\lambda}{n} \right)^n}_{=e^{-\lambda} \mbox{ für } n \to \infty} \cdot \underbrace{\left(1-\frac{\lambda}{n}\right)^{-k}}_{=1 \mbox{ für } n \to \infty}
+\end{eqnarray}
+wobei die Klammern den Grenzwert für $n\to \infty$ und $k$ fixiert angeben. Damit sehen wir, folgendes Resultat:
+$$ \lim_{n\to\infty} P[X_n = k] = e^{-\lambda} \frac{\lambda^k}{k!}=P[X=k]$$
+Damit lässt sich die oft komplizierte Binomialverteilung relativ gut \textit{approximieren}, wenn $\lambda = np$. Man verwendet als Faustregel, dass die Approximation verwendet werden kann, wenn $np^2 \leq 0.05$
+\end{mdframed}
