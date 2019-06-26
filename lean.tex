@@ -7,8 +7,8 @@
 %% http://creativecommons.org/licenses/by-sa/3.0/
 %% 
 
-\documentclass[portrait,a4paper,titlepage]{article}
-
+\documentclass[11pt]{article}
+\usepackage[left=1mm, right=1mm, top=1mm, bottom=1mm,paperwidth=140mm, paperheight=297mm]{geometry}
 \usepackage[utf8x]{inputenc}
 \usepackage{amssymb, amsfonts, amsmath}
 \usepackage{xcolor}
@@ -26,9 +26,6 @@
 \usepackage{booktabs}
 \colorlet{shadecolor}{orange!15}
 
-\usepackage{geometry}
-\geometry{a4paper, left=12mm, right=12mm, top=15mm, bottom=15mm} 
-
 \usepackage{multirow}
 \usepackage{multicol}
 \columnsep24pt
@@ -44,35 +41,35 @@
 \title{Wahrscheinlichkeit \& Statistik}
 
 \date{\today}
-\maketitle
+%\maketitle
 
 \setcounter{tocdepth}{2}
-\tableofcontents
+%\tableofcontents
 
-\thispagestyle{empty}
-\newpage
+%\thispagestyle{empty}
+%\newpage
 \setcounter{page}{1}
 
 %\begin{multicols}{2}
 
 % include the individual chapters
 \part{Wahrscheinlichkeitstheorie}
-\input{kap1.tex}\clearpage
-\input{kap2.tex}\clearpage
-\input{kap3.tex}\clearpage
-\input{kap4.tex}\clearpage
-\input{kap5.tex}\clearpage
+\input{kap1.tex}
+\input{kap2.tex}
+\input{kap3.tex}
+\input{kap4.tex}
+\input{kap5.tex}
 
 \part{Statistik}
-\input{kap6.tex}\clearpage
-\input{kap7.tex}\clearpage
-\input{kap8.tex}\clearpage
-\input{kap9.tex}\clearpage
-\input{kap10.tex}\clearpage
+\input{kap6.tex}
+\input{kap7.tex}
+\input{kap8.tex}
+\input{kap9.tex}
+%\input{kap10.tex}
 
 
 % fill the page
-\clearpage
+%\clearpage
 
 %\end{multicols}
 

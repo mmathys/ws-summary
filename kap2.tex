@@ -38,7 +38,7 @@ sofern diese Reihe absolut konvergiert. Ansonsten existiert der Erwartungswert n
 Man kann den Erwartungswert auch als Summe über $\Omega$ schreiben, falls er exisitert, denn dann gilt:
 $$ \E[X] = \sum_{\omega_i \in \Omega} X(\omega_i) P[\{\omega_i\}] = \sum_{\omega_i \in \Omega} p_i X(\omega_i)$$
 (eine weitere Umformung existiert im Skript, Seite 43)
-\clearpage
+
 \begin{satz}[\textbf{Erwartungswert von Funktionen von ZV}]
 Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X(x)$ und $Y = g(X)$ für eine Funktion $g:\R \to \R$. Dann gilt
 $$ \E[Y] = \E[g(X)] = \sum_{x_k \in \mathcal{W}(X)} g(x_k) \cdot p_X(x_k)$$
@@ -161,7 +161,7 @@ $$ \mbox{Var}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mbox{Var}[X_i]$$ sofe
 Seien $X,Y$ diskrete Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p(x,y)$. Dann ist auch ihre Summe $Z:=X+Y$ diskret. Damit können wir die Gewichtsfunktion von $Z$ beschreiben durch
 $$ p_Z(z) = P[Z=z] = \sum_{x_k \in \mathcal{W}(X)} P[X=x_k, Y = z-x_k] = \sum_{x_k \in \mathcal{W}(X)} p(x_k, z-x_k)$$ oder analog via Symmetrie $= \sum_{y_j\in\mathcal{W}(Y)} p(z-y_j, y_j)$. Dies ist ein völlig allgemeines Resultat. Sind nun $X$ und $Y$ unabhängig, dann gilt bekanntlich $p(x,y)= p_X(x) \cdot p_Y(y)$. Damit folgt die bekannte \textit{Faltung} der Gewichtsfunktionen $p_X$ und $p_Y$:
 $$ p_Z(z) = \sum_{x_k \in \mathcal{W}(X)} p_X(x_k) \cdot p_Y(z-x_k) = \sum_{y_j \in \mathcal{W}(Y)} p_X(z-y_j) \cdot p_Y(y_j)$$ und schreiben dies kurz als $p_Z = p_X * p_Y = p_Y * p_X$.
-\clearpage
+
 \subsection{Bedingte Verteilungen}
 Hier haben wir die gemeinsame Verteilung zweier Zufallsvariablen und wollen Informationen, die wir über eine der beiden Zufallsvariablen haben, ausnutzen um eine genauere Aussage über die andere Zufallsvariable zu machen.
 

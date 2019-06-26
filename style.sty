@@ -1,0 +1,167 @@
+% use greek letters for phi and epsilon
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+% bolds math symbols
+\newcommand{\bs}{\boldsymbol}
+% Shortcut to write caligraphic math symbols
+\newcommand{\mc}{\mathcal}
+% norm
+\newcommand{\norm}[1]{\left| \!\:\! \left| #1 \right| \!\:\! \right|}
+
+% some shortcuts
+\newcommand{\ds}{\displaystyle}
+\newcommand{\arr}{\rightarrow}
+\newcommand{\Arr}{\Rightarrow}
+\newcommand{\LRA}{\Leftrightarrow}
+\newcommand{\LLRA}{\Longleftrightarrow}
+\newcommand{\nop}[1]{}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\cond}{\operatorname{cond}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}}
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}}
+\newcommand{\mx}{\mathop{\mathrm{max}}}
+\newcommand{\bigcupdot}{\bigcup \hspace{-0.35cm} \cdot}
+
+
+% stuff for integrals
+\newcommand{\intl}{\int\limits}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\rmD}{\mathrm{D}}
+
+% number sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\M}{\mathbb{M}}
+
+% big-o notation
+\newcommand{\bigO}{\mathcal{O}}
+
+% 'with' in set notation
+\newcommand{\with}{\;|\;}
+
+% hyperref
+\usepackage[colorlinks=false,pdfborder = {0 0 0 0}]{hyperref}
+
+
+\parindent0pt
+\setcounter{secnumdepth}{4}
+
+%% Redefine the \paragraph command:
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{0mm}%
+	{-\baselineskip}%
+	{0.5\baselineskip}%
+	{\normalfont\bfseries}%
+}%
+\makeatother 
+
+% algorithms
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\algsetup{linenodelimiter=}
+
+% listings
+\definecolor{darkgreen}{RGB}{0,127,14}
+\definecolor{purple}{RGB}{75,0,130}
+\usepackage{listings}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset { %
+    language=Pascal,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,% basic font setting
+    escapeinside={!}{!},
+    tabsize=2,
+}
+
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+% theorem package
+\usepackage{amsthm}
+\usepackage{thmtools}
+\newtheoremstyle{my-thm-style}% name
+{6pt}% Space above
+{5pt}% Space below
+{}% Body font
+{}% Indent amount
+{\bfseries}% Theorem head font
+{}% Punctuation after theorem head
+{8pt}% Space after theorem head
+{}% Theorem head spec (can be left empty, meaning `normal')
+
+\definecolor{orange}{rgb}{1,0.5,0}
+\definecolor{blue}{RGB}{135,206,250}
+
+\declaretheoremstyle[
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=8pt,
+spaceabove=1pt,
+mdframed={
+  skipabove=2pt,
+  skipbelow=2pt,
+  hidealllines=false,
+  backgroundcolor={orange!15},
+  innerleftmargin=2pt,
+  innerrightmargin=2pt}
+]{def}
+
+\declaretheoremstyle[
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=8pt,
+spaceabove=1pt,
+mdframed={
+  skipabove=2pt,
+  skipbelow=2pt,
+  hidealllines=false,
+  backgroundcolor={purple!10},
+  innerleftmargin=2pt,
+  innerrightmargin=2pt}
+]{sat}
+
+\declaretheoremstyle[
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=8pt,
+spaceabove=1pt,
+mdframed={
+  skipabove=2pt,
+  skipbelow=2pt,
+  hidealllines=false,
+  backgroundcolor={green!10},
+  innerleftmargin=2pt,
+  innerrightmargin=2pt}
+]{lem}
+
+\declaretheoremstyle[
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=8pt,
+spaceabove=1pt,
+mdframed={
+  skipabove=2pt,
+  skipbelow=2pt,
+  hidealllines=false,
+  backgroundcolor={green!0},
+  innerleftmargin=2pt,
+  innerrightmargin=2pt}
+]{kor}
+
+\declaretheorem[style=def, name=Def. , numberwithin=section]{definition}
+\declaretheorem[style=sat, name=Satz, numberwithin=section]{satz}
+\declaretheorem[style=lem, name=Lemma, numberwithin=section]{lemma}
+\declaretheorem[style=kor, name=Korollar, numberwithin=section]{korollar}
