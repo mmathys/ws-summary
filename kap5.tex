@@ -52,7 +52,7 @@ Die letzte Gleichheit gilt, weil die Dichte von $U$ auf $[0,1]$ konstant 1 ist, 
 $$ \overline{h(U_n)} = \frac{1}{n} \sum_{i=1}^n h(U_i)$$ 
 Damit ist aber auch gleich klar, wieso man eine stärkere Aussage möchte, denn der berechnete Wert liegt nur mit grosser Wahrscheinlichkeit sehr nahe bei $I$, aber man weiss nicht, ob eine feste Realisierung $\omega$ in dieser guten Approximationsmenge liegt.
 
-\begin{satz}[\textbf{Starkes Gesetz der grossen Zahlen}
+\begin{satz}[\textbf{Starkes Gesetz der grossen Zahlen}]
 Sei $X_1,X_2,\dots$ eine Folge von unabhängigen Zufallsvariablen mit gleicher Verteilung und EW $\mu$ endlich. Für das arithmetische Mittel $\overline{X_n} := \frac{1}{n} \sum_{i=1}^n X_i$ gilt dann, dass $\overline{X_n}$ \textit{P-fast sicher} (P.f.s.) gegen $\mu$ konvergiert, also
 $$ P \left[ \left \{ \omega \in \Omega \with \overline{X_n}(\omega) \underset{n\to\infty}{\longrightarrow} \mu \right \} \right] $$
 \end{satz}
@@ -92,5 +92,21 @@ Diese Aussage ist zwar stark und liefert ziemlich genaue Abschätzungen, ist all
 
 \begin{satz}[\textbf{Chernoff Schranken}]
 Seien $X_1,\dots,X_n$ unabhängig mit $X_i \sim Be(p_i)$ und $S_n = \sum_{i=1}^n X_i$. Sei $\mu_n := \E[S_n] = \sum_{i=1}^n p_i$ und $\delta > 0$. Dann gilt:
-$$ P[S_n \geq (1+\delta) \mu_n] \leq \left( \frac{e^\delta}{(1+\delta)^{1+\delta}\right)^{\mu_n}}$$
+$$
+	P[S_n \geq (1+\delta) \mu_n] \leq
+	\left(
+		\frac{e^\delta}{(1+\delta)^{1+\delta}}
+	\right)
+	^{\mu_n}
+$$
 \end{satz}
+
+
+
+
+
+
+
+
+
+
