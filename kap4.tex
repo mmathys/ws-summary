@@ -36,7 +36,9 @@ In beinahe allen praktischen Beispielen ist $f_X$ zusätzlich stetig oder zumind
 \end{satz}
 
 Die Dichtefunktion ist beinahe analog zur Gewichtsfunktion für diskrete Zufallsvariablen, jedoch unterscheidet sie sich in Punktwahrscheinlichkeiten. Es gilt
-$$ P[a < X \leq b] = P[X \leq b] - P[X \leq a] = F_X(b) - F_X(a) = \int \limits_a^b f_X(s) \: ds \implies P[X\in B] = \int\limits_B f_X(s)\: ds$$
+\begin{align*}
+P[a < X \leq b] &= P[X \leq b] - P[X \leq a] = F_X(b) - F_X(a) = \int \limits_a^b f_X(s) \: ds \\&\implies P[X\in B] = \int\limits_B f_X(s)\: ds
+\end{align*}
 und betrachtet man nun einen Grenzwert, so erhält man
 $$ \lim_{\epsilon \to 0^+} P[t-\epsilon < X \leq t + \epsilon] = \lim_{\epsilon \to 0^+} \int \limits_{t-\epsilon}^{t+\epsilon} f_X(s) \: ds = 0 = P[X=t]$$
 Damit ist die Punktwahrscheinlichkeit an jedem Punkt = 0. Jedoch gilt für kleine $\epsilon$ (wir verwenden hier $\epsilon= dt$) das Folgende:
@@ -67,7 +69,7 @@ Exponentialverteilung mit Parameter $\lambda >0$ ist stetiges Analogon zur geome
 \begin{itemize}
 \item \textbf{Wertebereich:} $\mathcal{W}(X) = [0, \infty)$
 \item \textbf{Dichtefunktion:} $ f_X(t) = \begin{cases} \lambda e^{-\lambda t} & \mbox{für } t \geq 0 \\ 0 & \mbox{für } t < 0 \end{cases}$
-\item \textbf{Verteilungsfunktion:} $F_X(t) = \int\limits_{-\infty}^t f_X(s) \: ds = \begin{cases} 1 - e^{-\lambda t} \mbox{für } t \geq 0 \\ 0 & \mbox{für } t < 0 \end{cases}$
+\item \textbf{Verteilungsfunktion:} $F_X(t) = \int\limits_{-\infty}^t f_X(s) \: ds = \begin{cases} 1 - e^{-\lambda t} & \text{ für } t \geq 0 \\ 0 & \text{ für } t < 0 \end{cases}$
 \item \textbf{Notation:} $X \sim Exp(\lambda)$
 \item die Verteilung ist \textit{gedächtnislos} $\implies$ $P[X > t+ s \with X > s ] = P[X>t]$
 \end{itemize}
@@ -188,7 +190,9 @@ $$ f(x_1, \dots, x_n) = f_{X_1}(x_1) \cdots f_{X_n}(x_n)$$
 Für $Z=X+Y$ suchen wir die Verteilungsfunktion $F_Z(z) = P[Z \leq z] = P[X+Y \leq z]$. Dies kann man als Punktemenge im $\R^2$ auffassen, nämlich $A_z := \{(x,y) \in \R^2 \with x+y \leq z\}$. Damit ist $F_Z(z) = P[(X,Y) \in A_z]$. Damit erhält man 
 $$F_Z(z) = \int \limits_{-\infty}^\infty \int \limits_{-\infty}^{z-x} f(x,y) \ dy \ dx $$
 Substituiere nun $v=x+y \Rightarrow y = v-x, dy = dv$ so erhält man
-$$F_Z(z) = \int \limits_{-\infty}^\infty \int \limits_{-\infty}^z f(x,v-x) \ dv \ dx = \int \limits_{-\infty}^z \int \limits_{-\infty}^\infty f(x,v-x) \ dx \ dv \implies f_Z(z) = \frac{d}{dz}F_Z(z) = \int \limits_{-\infty}^\infty f(x,z-x) \ dx = \int \limits_{-\infty}^\infty f(z-y,y) \ dy$$
+\begin{align*}
+	F_Z(z) &= \int \limits_{-\infty}^\infty \int \limits_{-\infty}^z f(x,v-x) \ dv \ dx = \int \limits_{-\infty}^z \int \limits_{-\infty}^\infty f(x,v-x) \ dx \ dv \\&\implies f_Z(z) = \frac{d}{dz}F_Z(z) = \int \limits_{-\infty}^\infty f(x,z-x) \ dx = \int \limits_{-\infty}^\infty f(z-y,y) \ dy
+\end{align*}
 womit wir also auch die Dichte erhalten haben. Das letzte Gleichheitszeichen gilt wegen Symmetrie zwischen $X,Y$. Sind $X,Y$ unabhängig, so gilt $f(x,y) = f_X(x)\cdot f_Y(y)$ und dann ist $f_Z$ die \textit{Faltung} von $f_X$ und $f_Y$.
 
 \subsubsection*{Transformationen}

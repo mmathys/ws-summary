@@ -11,7 +11,7 @@ Wir betrachten eine Folge gleichartiger Experimente, die alle nur mit Erfolg ode
 Wir machen ein einziges 0-1 Experiment und nennen das Ergebnis $X \implies X \sim Be(p)$ 
 \begin{itemize}
 \item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1\}$
-\item \textbf{Gewichtsfunktion:} $p_X(x) := \begin{cases} P[X=1]=p & \mbox{falls } x=1 \\ P[X=0]=1-p & \mbox{falls } x=0 \end{cases}\quad \quad \quad$ also insgesamt $p_X(x)= p^x(1-p)^{1-x}$
+\item \textbf{Gewichtsfunktion:} $p_X(x) := \begin{cases} P[X=1]=p & \mbox{falls } x=1 \\ P[X=0]=1-p & \mbox{falls } x=0 \end{cases}\quad \quad \quad$\\also insgesamt $p_X(x)= p^x(1-p)^{1-x}$
 \item \textbf{Erwartungswert:} $\E[X]=p \quad \quad \quad$
 \item \textbf{Varianz:} $\mbox{Var}[X] = p(1-p)$
 \end{itemize}
@@ -20,7 +20,7 @@ Wir machen ein einziges 0-1 Experiment und nennen das Ergebnis $X \implies X \si
 Beschreibt die Anzahl der Erfolge bei $n$ unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. Sei $X$ die Anzahl der Erfolge $\implies X \sim Bin(n,p)$.
 \begin{itemize}
 \item \textbf{Wertebereich:} $\mathcal{W}(X) = \{0,1,2,\dots,n\}$
-\item \textbf{Gewichtsfunktion:} $p_X(k) = P[X=k] = \binom{n}{k} p^k (1-p)^{n-k} \quad \quad \mbox{für } k = 0,1,\dots, n$
+\item \textbf{Gewichtsfunktion:} $p_X(k) = P[X=k] = \binom{n}{k} p^k (1-p)^{n-k} \text{ für } k = 0,1,\dots, n$
 \item Summe von $n$ unabhängigen bernoulli-verteilten ZV mit gleichem Parameter $p$
 \item \textbf{Erwartungswert:} $\E[X] = \sum_{i=1}^n \E[Y_i] = np$
 \item \textbf{Varianz:} Var$[X] = \sum_{i=1}^n \mbox{Var}[Y_i] = np(1-p)$
@@ -33,7 +33,7 @@ Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfo
 \begin{itemize}
 \item \textbf{Wertebereich:} $\mathcal{W}(X)=\{1,2,\dots\} = \N$
 \item \textbf{Gewichtsfunktion:} $p_X(k) = P[X=k] = p(1-p)^{k-1} \quad \quad $ für $k=1,2,3\dots $
-\item \textbf{Erwartungswert:} $P[X > l] = (1-p)^l \implies \E[X] = \sum_{l=0}^\infty P[X>l] = \sum_{l=0}^\infty (1-p)^l = \frac{1}{1-(1-p)} = \frac{1}{p}$
+\item \textbf{Erwartungswert:} $P[X > l] = (1-p)^l\\\implies \E[X] = \sum_{l=0}^\infty P[X>l] = \sum_{l=0}^\infty (1-p)^l = \frac{1}{1-(1-p)} = \frac{1}{p}$
 \item \textbf{Varianz:} Var$[X] = \frac{1-p}{p^2}$
 \end{itemize}
 
@@ -49,7 +49,7 @@ Wir schreiben $X \sim NB(r,p)$
 \begin{itemize}
 \item \textbf{Wertebereich:} $\mathcal{W}(X) = \{r, r+1, r+2, \dots\}$
 \item \textbf{Gewichtsfunktion:} $p_x(k) = P[X=k] = \binom{k-1}{r-1} p^r (1-p)^{k-r}$
-\item Sind ZV $X_1,\dots,X_r \sim Geom(p)$ und unabhängig $\implies \sum_{i=1}^r X_i =: X \sim NB(r,p)$
+\item Sind ZV $X_1,\dots,X_r \sim Geom(p)$ und unabhängig\\$\implies \sum_{i=1}^r X_i =: X \sim NB(r,p)$
 \item \textbf{Erwartungswert:} $\E[X] = \sum_{i=1}^r \E[X_i] = \frac{r}{p}$
 \item \textbf{Varianz:} Var$[X] = \sum_{i=1}^r \mbox{Var}[X_i] = \frac{r(1-p)}{p^2}$
 \end{itemize}

@@ -75,7 +75,9 @@ Daraus folgt $S_n \sim \mathcal{N}(n\mu,n\sigma^2)$ und $\overline{X_n} \sim \ma
 
 \textbf{Häufige Anwendung:} \textit{Approximation der Binomialverteilung durch Normalverteilung} weil die Binomialverteilung mühsam zu berechnen ist. Ist $S_n \sim Bin(n,p)$ dann können wir approxmativ sagen, dass $S_n \sim \mathcal{N}(np, np(1-p))$. Fügen wir noch eine additiven Konstante $+\frac{1}{2}$ dazu, die sogenannte \textit{Kontinuitätskorrektur}, so wird das Resultat noch genauer. Dies lässt sich intuitiv dadurch rechtfertigen, dass sich die Binomialverteilung besser approximieren lässt, wenn man die Normalverteilungsdichte unter den ``Stäben" zentriert, statt am linken/rechten Rand zu betrachten. Damit gilt:\\
 \begin{korollar}
-$$ P[a <  S_n \leq b] = P \left[ \frac{a-np}{\sqrt{np(1-p)}} < S_n^* \leq \frac{b-np}{\sqrt{np(1-p)}} \right] \approx \Phi \left(\frac{b+\frac{1}{2}-np}{\sqrt{np(1-p)}}\right) - \Phi \left( \frac{a+\frac{1}{2}-np}{\sqrt{np(1-p)}} \right)$$
+\begin{align*}
+	P[a <  S_n \leq b] &= P \left[ \frac{a-np}{\sqrt{np(1-p)}} < S_n^* \leq \frac{b-np}{\sqrt{np(1-p)}} \right]\\&\approx \Phi \left(\frac{b+\frac{1}{2}-np}{\sqrt{np(1-p)}}\right) - \Phi \left( \frac{a+\frac{1}{2}-np}{\sqrt{np(1-p)}} \right)
+\end{align*}
 \end{korollar}
 
 \subsection{Grosse Abweichungen \& Chernoff-Schranken}

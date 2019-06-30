@@ -90,7 +90,10 @@ $$ F(x_1, \dots, x_n) = \sum_{y_1 \leq x_1, \dots, y_n \leq x_n} p(y_1,\dots,y_n
 Sein $X,Y$ Zufallsvariablen mit der gemeinsamen Verteilungsfunktion $F$. Dann ist die \textit{Randverteilung} von $X$ gegeben durch
 $$F_X:\R \to [0,1] \mbox{  mit  } x\mapsto F_X(x) := P[X \leq x] = P[X \leq x, Y < \infty] = \lim_{y\to \infty} F(x,y)$$
 Sind $X,Y$ diskrete Zufallsvariablen mit $\mathcal{W}(Y) = \{y_1,y_2,\dots \}$ und gemeinsamer Gewichtsfunktion $p(x,y)$, so ist die \textit{Gewichtsfunktion der Randverteilung} von $X$ gegeben durch
-$$p_X: \mathcal{W}(X) \to [0,1] \mbox{  mit  } x \mapsto p_X(x) = P[X=x] = \sum_{y_j \in \mathcal{W}(Y)} P[X=x, Y = y_j] = \sum_{y_j \in \mathcal{W}(Y)} p(x,y_j) \quad \quad \mbox{ für } x\in \mathcal{W}(X)$$
+
+\begin{align*}
+	p_X: \mathcal{W}(X) \to [0,1] \mbox{  mit  } x \mapsto p_X(x) &= P[X=x] \\&= \sum_{y_j \in \mathcal{W}(Y)} P[X=x, Y = y_j] \\&= \sum_{y_j \in \mathcal{W}(Y)} p(x,y_j) \quad \mbox{ für } x\in \mathcal{W}(X)
+\end{align*}
 Analoge Aussagen gelten natürlich für $Y$.
 \end{definition} 
 

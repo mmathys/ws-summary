@@ -1,0 +1,167 @@
+\section{Nützlich}
+
+Median berechnen: Die Vertilungsfunktion muss $= 0.5$ sein. Also sei $F_X(x) = 0.5$, dann ist $x$ der Median.\\
+
+Falls $X_i \sim \text{Poi}(\lambda)$, dann $S_n \sim \text{Poi}(n \cdot \lambda)$
+\\
+
+Falls $X_i \sim \mathcal{N}(\mu, \sigma^2)$, dann $$\overline{X_n} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n}),\quad\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0, 1)$$
+
+Die Likelihoodmethode ist eigentlich die gemeinsame Dichte (Produkt falls unabhängig).\\
+
+Stichprobenmittel: $$\overline{X}_n = \frac{1}{n	}\sum_{i=1}^nX_i$$
+
+Stichprobenvarianz: $$S^2 = \frac{1}{n-1}\sum^n_{i=1}\left(X_i-\overline{X}_n\right)^2$$
+
+Das Stichprobenmittel und die Stichprobenvarianz werden oft als Schätzer in Kofidenzbereichen verwendet.
+
+\section{Satz von Bayes}
+
+\[
+	P[A\mid B] =
+	\frac{P[A \cap B]}{P[B]} =
+	\frac{P[B\mid A]\cdot P[A]}{P[B\mid A]\cdot P[A] + P[B \mid \overline{A}]\cdot P[\overline{A}]}
+\]
+
+\section{Schätzer Rezepte}
+
+\subsection{Maximum Likelihood Schätzer}
+
+\begin{itemize}
+	\item Likehood-Funktion $L$ bestimmen
+	\item Falls Zufallsvariablen i. i. d., dann $\log L$ bestimmen
+	\item $L$ ($\log L$) maximieren: ableiten von $L$ ($\log L$) und gleich $0$ setzen.
+	\item $\Rightarrow$ Funktion, die Parameter schätzt
+\end{itemize}
+
+\subsection{Momentenschätzer}
+
+\begin{itemize}
+	\item Verteilung bestimmen
+	\item Theoretische Momente bestimmen (meistens nur erstes Moment = $\mathbb{E}[X]$)
+	\item Gleichstellen mit empirischen Momenten (meistens nur erstes Moment)
+	\item $\Rightarrow$ Funktion, die Parameter schätzt.
+\end{itemize}
+
+\section{p-Wert}
+
+Beispiel: Hintergrundfarbe einer Webseite ändern und schauen, ob sich die Besuchsdauer von Nutzern verändern. $$\mu = 20$$
+
+\begin{itemize}
+	\item Nullhypothese $H_0$: $\mu = 20$ nach der Änderung\\Alternative $H_A$: $\mu > 20$ nach der Änderung
+	\item Signifikanzniveau: $\alpha = 0.05$
+	\item Stichprobe: $n=100$, $\overline{X} = 25$, ($\sigma$)
+	\item p-Wert: $P[\overline{X} \geq 25 \mid H_0 \text{ ist wahr}]$
+	\item Falls p-Wert $< \alpha$: $H_0$ verwerfen (und $H_A$ akzeptieren)\\Falls p-Wert $\geq \alpha$: $H_0$ nicht verwerfen (keine Aussage)
+\end{itemize}
+
+Der p-Wert ist \textbf{nicht} $P[H_0 \text{ ist wahr} \mid \text{Stichprobe}]$
+
+\section{Tests}
+
+Zusammenhänge $\alpha$ (Signifikanzniveau), Fehler 1. Art, $\beta$ (Macht), Fehler 2. Art ($1-\beta$)
+
+\begin{itemize}
+	\item $\alpha$ grösser $\iff$ Fehler 1. Art grösser $\iff$ Fehler 2. Art kleiner $\iff$ Macht grösser
+	\item $\alpha$ kleiner $\iff$ Fehler 1. Art kleiner $\iff$ Fehler 2. Art grösser $\iff$ Macht kleiner
+\end{itemize}
+
+\textbf{Achtung:} Bei kleinen Datenmengen kann eine Normalverteilungsapproximation ungenau werden. Deshalb immer diskrete Werte verwenden.
+
+\includegraphics[width=.8\textwidth]{images/normal.png}
+
+\subsection{Begriffe}
+
+Modell: z.B. Unter $P_\varphi$ sind die $X_i$ i.i.d. $\sim\text{Poi}(\lambda)$, $i=1, ..., 6$, $\lambda$ unbekannt.
+
+Teststatistik: Hilfsfunktion bei statistischen Tests. Kann zum Beispiel mittels Likelihood-Quotienten-Vorgehen gefunden werden.
+
+
+\begin{itemize}
+	\item Modell
+	\item Nullhypothese
+	\item Alternativhypothese
+	\item Teststatistik
+	\item Verteilung der Teststatistik unter der Nullhypothese
+	\item Verwerfungsbereich
+	\item beobachteter Wert der Teststatistik
+	\item Testentscheid
+	\item eventuell $p$-Wert
+\end{itemize}
+
+\textbf{Wichtig:}
+
+Falls beobachtetes Ergebnis im Verwerfungsbereich: $H_0$ wird abgelehnt, $H_A$ wird angenommen.
+
+Falls beobachtetes Ergebnis nicht im Verwerfungsbereich: $H_0$ wird nicht abgelehnt (keine Aussage über Annahme!), keine Aussage über $H_A$\\
+
+
+\textbf{$p$-Wert}: kleinstes Niveau, auf dem der Test die Nullhypothese noch verwirft.\\
+
+Auch: Falls $H_0: p = 123$, $H_A: p < 123$ Mit Statistik $P_{H_0}[T\leq \text{Beobachteter Wert}]$. p-Wert ist so wie die Signifikanz des Testresultats.\\
+
+A small p-value (typically $\leq 0.05$) indicates strong evidence against the null hypothesis, so you reject the null hypothesis.\\
+
+A large p-value ($> 0.05$) indicates weak evidence against the null hypothesis, so you fail to reject the null hypothesis.
+
+\section{Beispiel Teststatistik mit Likelihood-Quotienten finden}
+
+$X_i \sim \text{Poi}(\lambda)$ 
+
+\includegraphics[width=.4\textwidth]{images/likelihood1}
+
+\includegraphics[width=\textwidth]{images/likelihood2}
+
+\section{Konfidenzintervall berechnen}
+
+
+\begin{itemize}
+	\item Gegeben: Teststatistik $T$.
+	\item Schätze $\vartheta$ mit einem Schätzer. Zum Beispiel $\mu$: Stichprobenmittel oder $\sigma$: Stichprobenvarianz.
+	\item Setze den geschätzten Wert von $\vartheta$ in $T$ ein und bestimme die Verteilung. Achtung: Die Zufallsvariable ist frei. 
+	\item Konfidenzintervall mit Niveau $1-\alpha$: Bereich in der neuen Verteilung, die die Fläche $1-\alpha$ hat. ACHTUNG: Bereich soll als Bereich der Zufallsvariable angegeben sein, bevor sie in die Teststatistik eingeben wird, sodass sie im Niveaubereich liegt.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

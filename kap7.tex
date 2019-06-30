@@ -15,7 +15,8 @@ Sei $T$ ein Schätzer.
 \item $T$ ist \textbf{erwartungstreu}, falls $\E_\theta [T] = \theta$ gilt. $T$ schätzt im Mittel also richtig
 \item der \textbf{Bias} ist definiert als $\E_\theta [T] - \theta$
 $\implies$ ein erwartungstreuer Schätzer hat keinen Bias.
-\item der \textbf{mean-squared-error (MSE)} ist definiert als $\mathrm{MSE}_\theta [T] := \E_\theta [(T-\theta)^2] = \mathrm{Var}_\theta[T] + (\E_\theta[T] - \theta)^2$\\
+\item der \textbf{mean-squared-error (MSE)} ist definiert als\\
+$\mathrm{MSE}_\theta [T] := \E_\theta [(T-\theta)^2] = \mathrm{Var}_\theta[T] + (\E_\theta[T] - \theta)^2$\\
 $\implies$ für erwartungstreue Schätzer ist MSE = Varianz
 \item eine Folge $T^{(n)}$ von Schätzern heisst \textbf{konsistent} für $\theta$, falls $T^{(n)}$ für $n\to\infty$ in $P_\theta$-Wahrscheinlichkeit gegen $\theta$ konvergiert, d.h. für jedes $\theta \in \Theta$ gilt:
 $$ lim_{n\to\infty} P_\theta \left[ |T^{(n)} - \theta | > \varepsilon\right] = 0 \quad \quad \forall \varepsilon >0$$
