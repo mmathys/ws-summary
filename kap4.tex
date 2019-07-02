@@ -185,6 +185,20 @@ Hat man stetige Zufallsvariablen mit Dichten, dann ist die gemeinsame Dichtefunk
 $$ f(x_1, \dots, x_n) = f_{X_1}(x_1) \cdots f_{X_n}(x_n)$$
 \end{definition}
 
+\subsection{Bedingte Verteilungen usw}
+
+\begin{definition}[\textbf{Bedingte Dichte und Erwartungswert}]
+
+$$ f_{X_1 \mid X_2}(x_1\mid x_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{f_{X_2}(x_2)}$$
+$$ E[X_1 \mid X_2](x_2) = \int x_1 f_{X_1 \mid X_2}(x_1\mid x_2)\ dx_1$$
+Mit Trick:
+\begin{align*}
+	E[X_1] = E[E[X_1 \mid X_2]] &= \int E[X_1 \mid X_2](x_2) f_{X_2}(x_2) dx_2\\
+	&=\int \int x_1 f_{X_1, X_2}(x_1, x_2) dx_1 dx_2
+\end{align*}
+Anm. $E[X_1 \mid X_2](x_2) = E[X_1 \mid X_2=x_2]$ 
+\end{definition}
+
 \subsection{Funktionen und Transformationen von Zufallsvariablen}
 \subsubsection*{Summen}
 Für $Z=X+Y$ suchen wir die Verteilungsfunktion $F_Z(z) = P[Z \leq z] = P[X+Y \leq z]$. Dies kann man als Punktemenge im $\R^2$ auffassen, nämlich $A_z := \{(x,y) \in \R^2 \with x+y \leq z\}$. Damit ist $F_Z(z) = P[(X,Y) \in A_z]$. Damit erhält man 

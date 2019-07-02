@@ -7,13 +7,19 @@ Falls $X_i \sim \text{Poi}(\lambda)$, dann $S_n \sim \text{Poi}(n \cdot \lambda)
 
 Falls $X_i \sim \mathcal{N}(\mu, \sigma^2)$, dann $$\overline{X_n} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n}),\quad\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0, 1)$$
 
+$$
+	\mathbb{E}[X] = \int_{-\infty}^\infty x \cdot f_X(x)\ dx,\quad
+	\mathbb{E}[X^k] = \int_{-\infty}^\infty x^k \cdot f_X(x)\ dx\quad
+	\text{(vgl. Satz 4.3)}
+$$
+
 Die Likelihoodmethode ist eigentlich die gemeinsame Dichte (Produkt falls unabhängig).\\
 
 Stichprobenmittel: $$\overline{X}_n = \frac{1}{n	}\sum_{i=1}^nX_i$$
 
 Stichprobenvarianz: $$S^2 = \frac{1}{n-1}\sum^n_{i=1}\left(X_i-\overline{X}_n\right)^2$$
 
-Das Stichprobenmittel und die Stichprobenvarianz werden oft als Schätzer in Kofidenzbereichen verwendet.
+Das Stichprobenmittel und die Stichprobenvarianz werden oft als Schätzer in Kofidenzbereichen verwendet.\\
 
 \section{Satz von Bayes}
 
@@ -22,6 +28,8 @@ Das Stichprobenmittel und die Stichprobenvarianz werden oft als Schätzer in Kof
 	\frac{P[A \cap B]}{P[B]} =
 	\frac{P[B\mid A]\cdot P[A]}{P[B\mid A]\cdot P[A] + P[B \mid \overline{A}]\cdot P[\overline{A}]}
 \]
+
+
 
 \section{Schätzer Rezepte}
 
