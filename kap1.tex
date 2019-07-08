@@ -4,14 +4,11 @@
 \subsection{Grundbegriffe}
 \begin{definition}[\textbf{Ereignisraum}]
 \textit{Ereignisraum} oder \textit{Grundraum} $\bs{\Omega} \neq \emptyset$ ist Menge aller möglichen Ergebnisse des Zufallsexperiments. Seine Elemente $w\in \Omega$ heissen \textit{Elementarereignisse}.
-\end{definition}
-\underline{Bmk:} Kann sowohl endlich als auch unendlich sein, z.B. $\Omega_1 = \{1,2,3,4,5,6\}$ für einen Würfelwurf, aber $\Omega_2 = \{t \with t \geq 0\} = \R^+$ für die Lebensdauer einer Glühbirne. Weiter kann der Ereignisraum auch aus Funktionen bestehen, so z.B. $\Omega_3 = \{f\with f:[0,\infty)\to \R\}$ für die Entwicklung eines Aktienkurses. 
+\end{definition} 
 
 \begin{definition}[\textbf{Potenzmenge, Ereignis}]
 Die \textit{Potenzmenge} von $\Omega$ wird mit $2^\Omega$ oder mit $\mathcal{P}(\Omega)$ bezeichnet und ist die Menge aller Teilmengen von $\Omega$. Ein \textit{Ereignis} ist ein solches Element der Potenzmenge, also $A\in\mathcal{P}(\Omega)$. Die Klasse aller beobachtbaren Ereignisse ist $\mathcal{F}$, ebenfalls eine Teilmenge der Potenzmenge.
 \end{definition}
-
-In einem \textit{diskreten Wahrscheinlichkeitsraum} ist $\Omega$ endlich oder abzählbar, damit ist oft $\mathcal{F} = 2^\Omega$ und man unterscheidet beobachtbare und prinzipielle Ereignisse nicht. Ist $\Omega$ hingegen überabzählbar, dann muss $\mathcal{F}$ eine echte Teilklasse von $2^\Omega$ sein. 
 
 \begin{definition}[$\bs{\sigma}$\textbf{-Algebra}]
 Ein Mengensystem $\mathcal{F}$ ist eine $\sigma$-Algebra, falls
@@ -21,7 +18,6 @@ Ein Mengensystem $\mathcal{F}$ ist eine $\sigma$-Algebra, falls
 \item[(iii)] für jede Folge $(A_n)_{n\in\N}$ mit $A_n \in \mathcal{F}$ für alle $n\in \N$ ist auch $\bigcup_{n=1}^\infty A_n \in \mathcal{F}$.
 \end{itemize}
 \end{definition}
-$\implies$ Die Potenzmenge $2^\Omega$ ist immer eine $\sigma$-Algebra. Dasselbe Experiment kann oft durch verschiedene Tupel $(\Omega, \mathcal{F})$ beschrieben werden. (wobei die Wahl von $\mathcal{F}$ von $\Omega$ abhängt).
 
 \begin{definition}[\textbf{Wahrscheinlichkeitsmass}]
 Ein \textit{Wahrscheinlichkeitsmass} ist eine Abbildung $P: \mathcal{F}\to [0,1]$ mit folgenden Axiomen:
@@ -40,13 +36,11 @@ Aus den Axiomen A1 und A2 lassen sich die folgenden Rechenregeln herleiten:
 \end{itemize}
 
 \subsection{Diskrete Wahrscheinlichkeitsräume}
-\underline{Annahme:} $\Omega$ ist endlich oder abzählbar unendlich und $\mathcal{F}=2^\Omega$. Hier kann man das Wahrscheinlichkeitsmass definieren, in dem man die Wahrscheinlichkeiten der Elementarereignisse addiert.\\
+\underline{Annahme:} $\Omega$ ist \textbf{endlich} oder \textbf{abzählbar unendlich} und $\mathcal{F}=2^\Omega$. Hier kann man das Wahrscheinlichkeitsmass definieren, in dem man die Wahrscheinlichkeiten der Elementarereignisse addiert.\\
 
-Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $|\Omega| = N$ und sind alle $\omega_i$ gleich wahrscheinlich, also $p_i = 1/N$, so nennt man $\Omega$ einen \textit{Laplace Raum} und $P$ ist die \textit{diskrete Gleichverteilung}. Die Wahrscheinlichkeit eines Ereignisses kann dann wie folgt berechnet werden:
+Ist $\Omega = \{\omega_1, \dots, \omega_N\}$ endlich mit $|\Omega| = N$ und sind alle $\omega_i$ gleich wahrscheinlich, also $p_i = 1/N$, so nennt man $\Omega$ einen \textbf{Laplace Raum} und $P$ ist die \textit{diskrete Gleichverteilung}. Die Wahrscheinlichkeit eines Ereignisses kann dann wie folgt berechnet werden:
 
 $$ P[A] = \frac{\mbox{Anz. Elementarereignisse in } A}{\mbox{Anz. Elementarereignisse in } \Omega} = \frac{|A|}{|\Omega|}$$
-
-Die diskrete Gleichverteilung existiert nur, falls $\Omega$ \underline{endlich} und nicht abzählbar unendlich ist.
 
 \subsection{Bedingte Wahrscheinlichkeiten}
 \begin{definition}[\textbf{Bedingte Wahrscheinlichkeit}]
@@ -54,7 +48,7 @@ $A,B$ Ereignisse und $P[A] > 0$. Die \textit{bedingte Wahrscheinlichkeit} von $B
 $$ P[B \with A] := \frac{P[B \cap A ]}{P[A]}$$
 Bei fixierter Bedingung $A$ ist $P[\cdot \with A]$ wieder ein Wahrscheinlichkeitsmass auf $(\Omega, \mathcal{F})$.
 \end{definition}
-$\implies$ \textit{Multiplikationsregel:} $P[A\cup B] = P[B \with A] \cdot P[A]$ und \textit{Additionsregel:} $P[A\cup B] = P[A] + P[B] - P[A\cap B]$
+$\implies$ \textbf{Multiplikationsregel:} $P[A\cup B] = P[B \with A] \cdot P[A]$ und \textit{Additionsregel:} $P[A\cup B] = P[A] + P[B] - P[A\cap B]$
 
 \begin{satz}[\textbf{Satz der totalen Wahrscheinlichkeit}]
 Sei $A_1,\dots,A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte Ereignisse, d.h. $\bigcup_{i=1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset \: \forall i\neq k$. Dann gilt:
@@ -69,6 +63,11 @@ Bedingte Wahrscheinlichkeiten in mehrstufigen Experimenten können oft als Wahrs
 \begin{satz}[\textbf{Satz von Bayes}]
 Sei $A_1,\dots,A_n$ eine Zerlegung von $\Omega$ mit $P[A_i] > 0$ für $i = 1 \dots n$ und $B$ ein Ereignis mit $P[B] > 0$, dann gilt für jedes $k$
 $$ P[A_k \with B] = \frac{P[B \with A_k]\cdot P[A_k]}{\sum_{i=1}^n P[B \with A_i] \cdot P[A_i]}$$
+\[
+	\text{einfacher: } P[A\mid B] =
+	\frac{P[A \cap B]}{P[B]} =
+	\frac{P[B\mid A]\cdot P[A]}{P[B\mid A]\cdot P[A] + P[B \mid \overline{A}]\cdot P[\overline{A}]}
+\]
 \end{satz}
 \begin{proof}
 Verwende Definition der bedingten Wahrscheinlichkeit, wende im Zähler die Multiplikationsregel und im Nenner den Satz der totalen Wahrscheinlichkeit an.
@@ -85,9 +84,13 @@ Analoges gilt falls $P[B] \neq 0$.
 Ereignisse $A_1,\dots,A_n$ heissen \textit{stochastisch unabhängig}, falls für jede endliche Teilfamilie die Produktformel gilt. D.h. für ein $m \in \N$ und $\{k_1,\dots, k_m\} \subseteq \{1, \dots, n\}$ gilt immer
 $$ P \left[ \bigcap_{i=1}^m A_{k_i} \right] = \prod_{i=1}^m P[A_{k_i}]$$
 \end{definition}
-\underline{Bemerkung:} Auch wenn muan abzählbar viele Ereignisse zulässt, muss die Produktformel trotzdem nur für alle \textit{endlichen} Teilfamilien gelten. Paarweise unabhängigkeit impliziert nicht totale Unabhängigkeit, so können z.B. $A,B,C$ alle paarweise unabhängig sein, aber zusammen sind sie dennoch abhängig.
+
 
 	
+
+
+
+
 
 	
 	

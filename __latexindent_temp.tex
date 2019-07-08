@@ -2,17 +2,20 @@
 
 \begin{itemize}
  	\item \textbf{Summenregel} $(f(x)+g(x))' = f'(x) + g'(x)$
+    \item \textbf{Faktorregel} $(c\cdot f(x))' = c\cdot f'(x)$
     \item \textbf{Produktregel} $(f(x)\cdot g(x))' = f'(x)g(x) + f(x)g'(x)$
     \item \textbf{Quotientenregel} $\left(\frac{f(x)}{g(x)}\right)' = \frac{f'(x)g(x) - f(x)g'(x)}{g^2(x)}(g\neq 0)$
     \item \textbf{Kettenregel} $(f(g(x)))' = (f\circ g)' = f'(g(x))g'(x)$
 \end{itemize}
 
 \begin{itemize}
+  \item \textbf{Summe/Differenz:} $\int_a^b (f(x) +/- g(x)) xd = \int_a^b f(x) +/- \int_a^b g(x)$
+  \item \textbf{Konstanter Faktor:} $\int_a^b c\cdot f(x)dx = c\cdot \int_a^b f(x)dx$
   \item \textbf{Partielle Integration:} $\int_a^b f'(x)\cdot g(x)dx = \left[f(x)g(x)\right]_a^b - \int_a^b f(x)g'(x)$
   \item \textbf{Substitution:} $\int_{\phi(a)}^{\phi(b)} f(x)dx = \int_a^b f(\phi(t))\phi '(t) dt$
   \item \textbf{$a+c, b+c \in I$} $\int_a^b f(t+c)dt = \int_{a+c}^{b+c} f(x)dx$
   \item \textbf{$ca,cb\in I$: } $\int_a^b f(ct)dt = \frac{1}{c}f(x)dx$
-  \item \textbf{Logarithmus: }\;$\int\frac{f'(t)}{f(t)}dt = \log(|f(x)|)$, bzw. $\int_a^b\frac{f'(t)}{f(t)}dt = \log(f(|b|)) - \log(f(|a|))$
+  \item \textbf{Logarithmus: }\;(f stetig diffbar) $\int\frac{f'(t)}{f(t)}dt = \log(|f(x)|)$, bzw. $\int_a^b\frac{f'(t)}{f(t)}dt = \log(f(|b|)) - \log(f(|a|))$
 \end{itemize}
 
 \section{Nützlich}
@@ -37,6 +40,16 @@ Stichprobenmittel: $$\overline{X}_n = \frac{1}{n	}\sum_{i=1}^nX_i$$
 Stichprobenvarianz: $$S^2 = \frac{1}{n-1}\sum^n_{i=1}\left(X_i-\overline{X}_n\right)^2$$
 
 Das Stichprobenmittel und die Stichprobenvarianz werden oft als Schätzer in Kofidenzbereichen verwendet.\\
+
+\section{Satz von Bayes}
+
+\[
+	P[A\mid B] =
+	\frac{P[A \cap B]}{P[B]} =
+	\frac{P[B\mid A]\cdot P[A]}{P[B\mid A]\cdot P[A] + P[B \mid \overline{A}]\cdot P[\overline{A}]}
+\]
+
+
 
 \section{Schätzer Rezepte}
 
@@ -101,19 +114,20 @@ Zusammenhänge $\alpha$ (Signifikanzniveau), Fehler 1. Art, $\beta$ (Macht), Feh
 
 Modell: z.B. Unter $P_\varphi$ sind die $X_i$ i.i.d. $\sim\text{Poi}(\lambda)$, $i=1, ..., 6$, $\lambda$ unbekannt.
 
-Teststatistik: Hilfsfunktion bei statistischen Tests. Kann zum Beispiel mittels Likelihood-Quotienten-Vorgehen gefunden werden.\\
+Teststatistik: Hilfsfunktion bei statistischen Tests. Kann zum Beispiel mittels Likelihood-Quotienten-Vorgehen gefunden werden.
 
-\textbf{Punkte}: 
 
-	 Modell,
-	 Nullhypothese,
-	 Alternativhypothese,
-	 Teststatistik,
-	 Verteilung der Teststatistik unter der Nullhypothese,
-	 Verwerfungsbereich,
-	 beobachteter Wert der Teststatistik,
-	 Testentscheid,
-	 eventuell $p$-Wert.\\
+\begin{itemize}
+	\item Modell
+	\item Nullhypothese
+	\item Alternativhypothese
+	\item Teststatistik
+	\item Verteilung der Teststatistik unter der Nullhypothese
+	\item Verwerfungsbereich
+	\item beobachteter Wert der Teststatistik
+	\item Testentscheid
+	\item eventuell $p$-Wert
+\end{itemize}
 
 \textbf{Wichtig:}
 
@@ -139,6 +153,7 @@ $X_i \sim \text{Poi}(\lambda)$
 \includegraphics[width=\textwidth]{images/likelihood2}
 
 \section{Konfidenzintervall berechnen}
+
 
 \begin{itemize}
 	\item Gegeben: Teststatistik $T$.
