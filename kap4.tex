@@ -148,9 +148,11 @@ $$ f(x_1, \dots, x_n) = f_{X_1}(x_1) \cdots f_{X_n}(x_n)$$
 
 \subsection{Bedingte Verteilungen usw}
 
-\begin{definition}[\textbf{Bedingte Dichte und Erwartungswert}]
+\begin{definition}[\textbf{Bedingte Dichte, Verteilungsfunktion und Erwartungswert}]
 
 $$ f_{X_1 \mid X_2}(x_1\mid x_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{f_{X_2}(x_2)}$$
+$$ P(Y > t\mid Y < a) = \frac{P[t < Y < a]}{P[Y < a]}$$
+
 $$ E[X_1 \mid X_2](x_2) = \int x_1 f_{X_1 \mid X_2}(x_1\mid x_2)\ dx_1$$
 Mit Trick:
 \begin{align*}

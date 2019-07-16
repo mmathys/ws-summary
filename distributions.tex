@@ -1,0 +1,60 @@
+%%
+%% Wahrscheinlichkeit & Statistik, FS 2018
+%%
+%% (C) 2018 Jens Eirik Saethre
+%% 
+%% Licence: Creative Commons Attribution-Share Alike 3.0 Unported
+%% http://creativecommons.org/licenses/by-sa/3.0/
+%% 
+
+\documentclass[11pt]{article}
+\usepackage[a4paper,left=1mm, right=1mm, top=1mm, bottom=1mm,landscape]{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb, amsfonts, amsmath}
+\usepackage{xcolor}
+\usepackage[e]{esvect}
+\usepackage{floatrow} % allows to insert pictures into proofs and theorems
+\usepackage{array}
+\usepackage{tabu}
+\usepackage{cancel}
+
+\usepackage{graphicx}
+%\usepackage{picins}
+\usepackage{tabularx}
+\usepackage{mwe} % for blindtext and example-image-a in example
+\usepackage{wrapfig}
+\usepackage{framed}
+\usepackage{booktabs}
+\colorlet{shadecolor}{orange!15}
+
+\usepackage{multirow}
+\usepackage{multicol}
+\columnsep24pt
+\columnseprule0.1pt
+
+\input{style.sty}
+
+\usepackage[english,german]{babel} 
+\begin{document}
+
+
+\author{Max Mathys}
+\title{Wahrscheinlichkeit \& Statistik}
+
+\date{\today}
+
+\setcounter{page}{1}
+\setcounter{part}{3}
+\part{Verteilungen}
+
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | }
+ \hline
+ 
+ Name & Wahrscheinlichkeitsfunktion $P(X=x) = p_X(x)	$ / Dichtefunktion $f_X(x)$ & Kumulative Funktion $P(X\leq x) = F_X(x)$ & Parameter & Support & $\mathbb{E}[X]$ & $\text{Var}[X] = \sigma^2$ & Beispiel & Plot \\ [0.5ex] 
+ \hline
+\end{tabu}
+
+
+\end{document}
+
+
