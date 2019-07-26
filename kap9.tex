@@ -5,28 +5,27 @@ Wir suchen aus einer Familie $(P_\theta)_{\theta \in \Theta}$ von Modellen eines
 Ein \textit{Konfidenzbereich} für $\theta$ zu Daten $x_1, \dots, x_n$ ist eine Menge $C(x_1,\dots, x_n) \subseteq \Theta$. Damit ist $C(X_1,\dots,X_n)$ eine zufällige Teilmenge $\Theta$. Dieses $C$ heisst Konfidenzbereich \textit{zum Niveau} $1-\alpha$, falls für alle $\theta \in \Theta$ gilt:
 $$ P_\theta [\theta \in C(X_1,\dots, X_n)] \geq 1-\alpha$$
 \end{definition}
+
+\begin{mdframed}
+\textbf{Rezept (angewendeter t-Test):} Konfidenzintervall mit Niveau $1-\alpha$, $n$ Stichproben, Stichprobenmittel $\overline{X_n}$, Stichprobenvarianz $s_X^2$; beidseitig
+$$
+	I_{(1-\alpha)} = [
+		\overline{X_n} - \frac{s_X}{\sqrt{n}} \cdot t_{n-1,1-\frac{\alpha}{2}},\ 
+		\overline{X_n} + \frac{s_X}{\sqrt{n}} \cdot t_{n-1,1-\frac{\alpha}{2}}
+	]
+$$
+\end{mdframed}
+
 Die bedeutet intuitiv, dass man in jedem Modell den wahren Parameter mit grosser Wahrscheinlichkeit erwischt. Kennt man die Verteilung genau genug, so kann man exakte Konfidenzintervalle zu einem Signfikanzniveau angeben. Oft ist dies jedoch nicht der Fall und man kann nur approximative Angaben machen, z.B. mit dem \textit{Zentralen Grenzwertsatz}
 
 \subsection{Zusammenhang von Kondifenzbereichen und Tests}
 Wir zeigen im Folgenden, dass beide Konzept grundlegend zusammenhängen und ineinander überführt werden können.\\
+
 \begin{mdframed}
 Sei $C(X_1,\dots,X_n)$ ein Konfidenzbereich für $\theta$ zum Niveau $1-\alpha$. Wir wollen die Hypothese $H_0 : \theta = \theta_0$ testen. Dazu definieren wir einen Test 
 $$ I_{\{\theta_0 \notin C(X_1,\dots,X_n)\}}$$
 der $H_0$ ablehnt $\LLRA$ $v_0$ liegt nicht in $C(X_1,\dots, X_n)$. Damit folgt aus der Einfacheit von $\Theta_0 = \{\theta_0\}$ für jedes $\theta \in \Theta_0:$
 $$ P_{\theta} [\theta_0 \notin C(X_1,\dots,X_n)] = 1 - P_\theta[\theta_0 \in C(X_1,\dots,X_n)] \leq \alpha$$
-Dieser Test hat also gerade Signifikanzniveau $\alpha$. Aus dem Konfidenzbereich für $\theta$ erhalten wir also eine Familie von Tests, nämlich für jede einfache Hypothese $\Theta_0 = \{\theta_0\}$ mit $\theta_0 \in \Theta$ genau einen Test.
-\end{mdframed}
-
-\begin{mdframed}
-Sei umgekehrt für jede einfache Hypothese $\Theta_0 = \{\theta_0\}$ ein Test zum Niveau $\alpha$ gegeben. Damit haben wir einen kritischen Bereich $K_{\theta_0}$, so dass die Nullhypothese genau dann abgelehnt wird, wenn $(X_1,\dots,X_n) \in K_{\theta_0}$ für jedes $\theta_0$. Weiter gilt wegen dem Niveau $\alpha$, dass für jedes $\theta_0 \in \Theta$ gilt
-$$ P_{\theta_0} [(X_1,\dots, X_n) \in K_{\theta_0}] \leq \alpha$$
-Damit können wir für das Niveau $1-\alpha$ folgende Teilmenge $C(X_1,\dots, X_n)$ von $\Theta$ definieren:
-$$ \theta \in C(X_1,\dots, X_n) :\LLRA (X_1,\dots, X_n) \in K_\theta$$
-Dies ist ein Konfindenzbereich für das Niveau $1-\alpha$, denn es gilt für jedes $\theta \in \Theta$
-
-\begin{align*}
-	P_\theta [\theta \in C(X_1,\dots,X_n)] &= P_\theta [(X_1,\dots, X_n) \notin K_\theta]\\&= 1 - P_\theta [(X_1,\dots, X_n) \in K_\theta]\\&\geq 1 - \alpha
-\end{align*}
-
+Dieser Test hat also gerade Signifikanzniveau $\alpha$. Aus dem Konfidenzbereich für $\theta$ erhalten wir also eine Familie von Tests, nämlich für jede einfache Hypothese $\Theta_0 = \{\theta_0\}$ mit $\theta_0 \in \Theta$ genau einen Test.\\
 
 \end{mdframed}
