@@ -95,6 +95,29 @@ Dabei bezeichnet $z_\alpha$ das $\alpha$-Quantil der Standardnormalverteilung. M
 $$ \Phi(z_\alpha) = \frac{1}{\sqrt{2\pi}} \int \limits_{-\infty}^{z_\alpha} e^{-x^2/2} \ dx = \alpha$$
 \end{itemize}
 
+\begin{mdframed}
+	
+	\textbf{Rezept Fehler 2. Art berechnen:}
+	
+	Nehme an: einseitiger z-Test, $T=\frac{\overline{X_n}-\mu_0}{\sigma / \sqrt{n}}$, $\mu_0 = 70$\\
+	
+	$H_0: \mu = \mu_0$; $H_A: \mu < \mu_0$.\\
+	
+	Kritischer Bereich mit 5\%-Niveau: $K = (-\infty, -1.645)$\\
+	
+	Objective: Fehler 2. Art finden für $\mu_A = 69.5$. Wir nehmen an, dass $T=\frac{\overline{X_n}-\mu_A}{\sigma / \sqrt{n}} \sim \mathcal{N}(0, 1)$ unter $P_{\mu_A}$
+	
+	\begin{align*}
+		\text{Fehler 2. Art} &= P_{\mu_A}[T \notin K]\\
+		&= P_{\mu_A}[T > - 1.645]\\
+		&= P_{\mu_A}\left[\frac{\overline{X_n}-\mu_0}{\sigma / \sqrt{n}} > - 1.645\right]\\
+		&= P_{\mu_A}\left[\frac{\overline{X_n}-\mu_A}{\sigma / \sqrt{n}} > \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} - 1.645\right]\quad \text{mit addition}\\
+		&= 1 - P_{\mu_A}\left[\frac{\overline{X_n}-\mu_A}{\sigma / \sqrt{n}} \leq \frac{\mu_0 - \mu_A}{\sigma / \sqrt{n}} - 1.645\right]\\
+		&= 1 - \Phi\left(\frac{\mu_0 - \mu_A}{\sigma - \sqrt{n}} - 1.645\right) \quad \text{weil $\sim \mathcal{N}(0, 1)$}
+	\end{align*}
+	
+\end{mdframed}
+
 \subsection{$\bs{t}$-Test}
 Test für den Erwartungswert einer Normalverteilung mit unbekannter Varianz. Seien also $X_1,\dots,X_n \sim \mathcal{N}(\mu, \sigma^2)$-verteilt (i.i.d.) für unbekanntes $\sigma >0$.
 \begin{itemize}
