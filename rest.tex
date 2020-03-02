@@ -24,9 +24,18 @@
 Median berechnen: Die Vertilungsfunktion muss $= 0.5$ sein. Also sei $F_X(x) = 0.5$, dann ist $x$ der Median.\\
 
 Falls $Y = g(X)$, dann $F_Y(x) = F_X(g^{-1}(x))$\\
+Falls $U = X + Y$, $V = X \cdot Y$ dann
+\begin{align*}
+	F_U(u) = P[U \leq u] = \int_0^u \left(\int_0^{u-y}f_X(x) dx\right)f_Y(y) dy\\
+	F_V(v) = P[V \leq v] = \int_0^\infty \left(\int_0^{\infty/y}f_X(x) dx\right)f_Y(y) dy
+\end{align*}
 
-Falls $X_i \sim \text{Poi}(\lambda)$, dann $S_n \sim \text{Poi}(n \cdot \lambda)$
-\\
+$\mathcal{N}(\mu_1, \sigma_1^2) + \mathcal{N}(\mu_2, \sigma_2^2) = \mathcal{N}(\mu_1+\mu_2, \sigma_1^2 + \sigma_2^2)$\\
+
+Für $aX$: $\mu \rightarrow a\mu$; $\sigma, \sigma^2 \rightarrow a\sigma, a^2\sigma^2 $\\
+
+Falls $X_i \sim \text{Poi}(\lambda)$, dann $S_n \sim \text{Poi}(n \cdot \lambda)$\\
+
 
 Falls $X_i \sim \mathcal{N}(\mu, \sigma^2)$, dann $$\overline{X_n} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n}),\quad\frac{\overline{X_n}-\mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0, 1)$$
 
