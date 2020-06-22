@@ -49,7 +49,7 @@ Damit genügt es, die Verteilung von $X$ zu kennen, man muss nicht extra die Ver
 \begin{satz}[\textbf{Eigenschaften des Erwartungswerts}]
 Seien $X,Y$ Zufallsvariablen mit existentem Erwartungswert. Dann gilt:
 \begin{itemize}
-\item[(i)] \textbf{Monotonie:} $X \leq Y \implies \E[X] \leq \E[Y]$ wobei dies bedeutet, dass $X(\omega) \leq Y(\omega)$ für alle $\omega$.
+\item[(i)] \textbf{Monotonie:} falls $X(\omega) \leq Y(\omega) $ für alle $\omega$, so gilt $ \E[X] \leq \E[Y]$
 \item[(ii)] \textbf{Linearität:} für beliebige $a,b \in \R$ gilt: $\E[aX+b] = a\E[X] + b$
 \item[(iii)] nimmt $X$ nur Werte aus $\N_0 = \{0,1,2,\dots\}$ annimmt, dann gilt:
 $$ \E[X] = \sum_{j=1}^\infty P[X \geq j] = \sum_{l = 0}^\infty [P_X \geq l]$$
