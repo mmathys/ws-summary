@@ -49,7 +49,7 @@ $A,B$ Ereignisse und $P[A] > 0$. Die \textit{bedingte Wahrscheinlichkeit} von $B
 $$ P[B \with A] := \frac{P[B \cap A ]}{P[A]}$$
 Bei fixierter Bedingung $A$ ist $P[\cdot \with A]$ wieder ein Wahrscheinlichkeitsmass auf $(\Omega, \mathcal{F})$.
 \end{definition}
-$\implies$ \textbf{Multiplikationsregel:} $P[A\cup B] = P[B \with A] \cdot P[A]$ und \textit{Additionsregel:} $P[A\cup B] = P[A] + P[B] - P[A\cap B]$
+$\implies$ \textbf{Multiplikationsregel:} $P[A\cap B] = P[B \with A] \cdot P[A]$ und \textit{Additionsregel:} $P[A\cup B] = P[A] + P[B] - P[A\cap B]$
 
 \begin{satz}[\textbf{Satz der totalen Wahrscheinlichkeit}]
 Sei $A_1,\dots,A_n$ eine Zerlegung von $\Omega$ in paarweise disjunkte Ereignisse, d.h. $\bigcup_{i=1}^n A_i = \Omega$ und $A_i \cap A_k = \emptyset \: \forall i\neq k$. Dann gilt:
