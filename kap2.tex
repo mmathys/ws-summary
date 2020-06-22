@@ -21,9 +21,9 @@ In unserem Fall ist $I_A$ für jedes $A \subseteq \Omega$ eine Zufallsvariable.
 
 \subsubsection*{Eigenschaften der Dichte und Verteilungsfunktion}
 \begin{itemize}
-\item die Verteilung $F_X$ ist vollständig durch die Dichte $p_X$ festgelegt, nämlich: $F_X(t) = P[X \leq t] = \sum_{k \mbox{ mit } x_k \leq t} \{X = x_k\}$
+\item die Verteilungsfunktion $F_X$ ist vollständig durch die Dichte $p_X$ festgelegt, nämlich:\\ $F_X(t) = P[X \leq t] = \sum_{x_k \leq t} P[X = x_k] = \sum_{x_k \leq t}p_X(x_k)$
 \item für jedes $x_k \in \mathcal{W}(X)$ gilt $0 \leq p_X(x_k) \leq 1$ und $\sum_{x_k \in \mathcal{W}(X)} p_X(x_k) = 1$.
-\item ist $\mathcal{W}$ nichtleer und abzählbar und $f:\mathcal{W}\to \R$ eine Funktion zwischen 0 und 1 für jedes $w_k \in \mathcal{W}$ mit $\sum_{w_k \in \mathcal{W}} f(w_k) = 1$, dann kann man einen Wahrscheinlichkeitsraum $(\Omega, \mathcal{F}, P)$ und darauf eine Zufallsvariable $X$ konstruieren, deren Gewichtsfunktion gerade die Funktion $f$ ist. Dazu genügt bspw. $\Omega := \mathcal{W}$, $\mathcal{F} := 2^\Omega$ und $X(\omega) = \omega$.
+\item ist $\mathcal{W}\subseteq \mathbb{R}$ nichtleer und abzählbar und $f:\mathcal{W}\to [0, 1]$ eine Funktion mit $\sum_{w_k \in \mathcal{W}} f(w_k) = 1$, dann kann man einen Wahrscheinlichkeitsraum $(\Omega, \mathcal{F}, P)$ und darauf eine Zufallsvariable $X$ konstruieren, deren Gewichtsfunktion gerade die Funktion $f$ ist. Dazu genügt bspw. $\Omega := \mathcal{W}$, $\mathcal{F} := 2^\Omega, P[\{\omega\}] := f(\omega)$ und $X(\omega) = \omega$.
 \item Die Verteilung beschreibt das stochastische Verhalten einer Zufallsvariable. Das ist dasjenige Wahrscheinlichkeitsmass $\mu_X$ auf $\R$, das durch $\mu_X(B) := P[X \in B]$ definiert ist. Ist $X$ diskrete Zufallsvariable $\implies \mu_X$ heisst \textit{diskrete Verteilung}. Damit kann man die Verteilung $\mu_X$ und die Gewichtsfunktion $p_X$ direkt miteinander identifizieren: der einzige Unterschied besteht darin, dass $\mu_X$ als Argumente \textit{Teilmengen} von $\mathcal{W(X)}$ hat, $p_X$ hingegen \textit{Elemente} von $\mathcal{W}(X)$. Folgende Formel beschreibt ihren Zusammenhang:
 $$ \mu_X(B) = P[X \in B] = \sum_{x_k \in B} p_X(x_k) \quad \quad \mbox{ für } B\subseteq \mathcal{W}(X)$$
 \end{itemize}
@@ -49,16 +49,16 @@ Damit genügt es, die Verteilung von $X$ zu kennen, man muss nicht extra die Ver
 \begin{satz}[\textbf{Eigenschaften des Erwartungswerts}]
 Seien $X,Y$ Zufallsvariablen mit existentem Erwartungswert. Dann gilt:
 \begin{itemize}
-\item[(i)] \textbf{Monotonie:} $X \leq Y \implies \E[X] \leq \E[Y]$ wobei dies bedeutet, dass $X(\omega) \leq Y(\omega)$ für alle $\omega$.
+\item[(i)] \textbf{Monotonie:} falls $X(\omega) \leq Y(\omega) $ für alle $\omega$, so gilt $ \E[X] \leq \E[Y]$
 \item[(ii)] \textbf{Linearität:} für beliebige $a,b \in \R$ gilt: $\E[aX+b] = a\E[X] + b$
 \item[(iii)] nimmt $X$ nur Werte aus $\N_0 = \{0,1,2,\dots\}$ annimmt, dann gilt:
-$$ \E[X] = \sum_{j=1}^\infty P[X \geq j] = \sum_{l = 0}^\infty [P_X \geq l]$$
+$$ \E[X] = \sum_{j=1}^\infty P[X \geq j] = \sum_{l = 0}^\infty P[X > l]$$
 \end{itemize}
 \end{satz}
 
 \begin{definition}[\textbf{Varianz \& Standardabweichung}]
 Sei $X$ eine diskrete ZV mit $\E[X^2] < \infty$\\ dann definieren wir die \textit{Varianz} von $X$ als
-$$ \mbox{Var}[X] := \E\left[(X - \E[X])\right]$$ und die \textit{Standardabweichung} von $X$ als
+$$ \mbox{Var}[X] := \E\left[(X - \E[X])^2\right]$$ und die \textit{Standardabweichung} von $X$ als
 $$ \sigma(X) = \mbox{sd}(X) := \sqrt{\mbox{Var}[X]}$$
 Beides sind \textit{Streuungsmasse} für die Verteilung von $X$
 \end{definition}
@@ -153,7 +153,7 @@ Ist $Cov(X,Y) = 0$, so nennt man $X$ und $Y$ \textbf{unkorreliert}. $\implies$ L
 
 \begin{satz}[\textbf{Produkte von Zufallsvariablen}]
 Seien $X_1,\dots, X_n$  diskrete Zufallsvariablen mit endlichen Erwartungswerten. Falls $X_1,\dots,X_n$ unabhängig sind, dann gilt
-$$\E\left[\prod_{i=1}^n X_i\right] = \prod_{i=1}^n \E[X_i]$$ Insbesondere sind $X_1,\dots,X_n$ paarweise unkorreliert und und daher gilt
+$$\E\left[\prod_{i=1}^n X_i\right] = \prod_{i=1}^n \E[X_i]$$ Insbesondere sind dann $X_1,\dots,X_n$ paarweise unkorreliert und daher gilt
 $$ \mbox{Var}\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mbox{Var}[X_i]$$ sofern die Varianzen existieren und endlich sind.
 \end{satz}
 \underline{Bemerkung:} Es gilt die Implikationskette: unabhängig $\implies$ paarweise unabhängig $\implies$ unkorreliert\\
