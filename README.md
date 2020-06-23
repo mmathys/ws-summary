@@ -4,7 +4,7 @@
 
 ## Compilation
 
-**Normal compilation**: `WS.tex` is the root TeX file. 
+**Normal compilation**: `lean.tex` is the root TeX file. 
 
 **Compilation for exam**: The summary can be compiled with 3 to 1 with `make three-borderless`. For required commands check the `Makefile`. 
 
