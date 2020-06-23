@@ -1,4 +1,4 @@
-# Wahrscheinlichkeit und Statistik FS19 D-INFK  
+# Wahrscheinlichkeit und Statistik FS19/FS20 D-INFK  
 
 [PDF](https://github.com/mmathys/ws-summary/blob/master/three.pdf)
 
